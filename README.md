@@ -40,15 +40,64 @@ académicas específicas
 
 
 ![alt text](<Imagen de WhatsApp 2025-10-16 a las 12.45.42_6c8c809e.jpg>)
+
 ## 2. Glosario de términos
 
 - Anuncio: Publicación creada por un usuario que contiene información sobre un articulo (Contiene: fotografía, descripción, precio, estado,ubicación)
 -Artículo/Producto: Bien material ofrecido para venta o intercambio en la plataforma (libros,
 apuntes, material académico, tecnología, muebles, ropa, etc.).
--Categoría: Clasificación temática de los productos (Libros y Apuntes, Tecnología, Muebles y
+
+- Categoría: Clasificación temática de los productos (Libros y Apuntes, Tecnología, Muebles y
 Hogar, Ropa y Complementos, Deportes, Electrónica, Servicios).
-Chat interno: Sistema de mensajería integrado en la plataforma que permite la comunicación
+
+- Chat interno: Sistema de mensajería integrado en la plataforma que permite la comunicación
 privada entre comprador y vendedor.
+
+- Comprador: Usuario registrado que busca adquirir artículos publicados por otros estudiantes.
+
+- Curso académico: Nivel de estudios del estudiante (1º Grado, 2º Grado, Máster, Doctorado)
+que puede condicionar la visibilidad de ciertos productos académicos específicos.
+
+- Estado del producto: Clasificación del grado de conservación de un artículo (Nuevo, Como
+nuevo, Buen estado, Estado aceptable, Para reparar).
+
+- Facultad/Centro: División organizativa de la universidad que permite segmentar productos por
+áreas de conocimiento (Ingeniería, Ciencias, Humanidades, Derecho, etc.).
+
+- Favoritos: Lista personalizada donde los usuarios guardan anuncios de interés para consultarlos
+posteriormente.
+
+- Marketplace: Plataforma digital que conecta vendedores y compradores sin gestionar
+directamente el inventario ni las transacciones.
+
+- Moderador/Administrador: Usuario con permisos especiales para supervisar contenidos,
+validar anuncios, gestionar reportes y administrar la comunidad.
+
+- Perfil de usuario: Página personalizada que contiene información del estudiante (nombre,
+facultad, curso, valoración media, anuncios activos, historial).
+
+- Publicación: Acción de crear y activar un anuncio para que sea visible públicamente en la
+plataforma.
+
+- Reporte: Funcionalidad que permite a los usuarios denunciar anuncios fraudulentos, contenido
+inapropiado o comportamientos inadecuados.
+
+- Transacción: Operación completa de compraventa o intercambio entre dos usuarios, desde el
+contacto inicial hasta la entrega del producto.
+
+- Usuario verificado: Estudiante que ha completado el proceso de autenticación mediante correo
+electrónico asociado, garantizando su pertenencia a la comunidad universitaria. 
+
+- Valoración/Reseña: Sistema de puntuación (1-5 estrellas) y comentarios que permite a
+compradores y vendedores evaluar la experiencia de transacción, generando reputación.
+
+- Vendedor: Usuario registrado que publica anuncios ofreciendo artículos propios para venta o
+intercambio.
+
+- Visibilidad de anuncio: Parámetro que determina qué usuarios pueden ver una publicación
+según filtros de facultad, curso o categoría.
+
+- Bloquear Usuario: Acción que permite a un usuario impedir que otro pueda comunicarse con él o visualizar sus anuncios. Esta opción se utiliza para evitar interacciones no deseadas o reportar comportamientos inapropiados dentro de la plataforma.
 
 ## 3. Visión general del sistema
 
