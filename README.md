@@ -15,12 +15,12 @@ deportivos, ropa) a precios asequibles. Muchos estudiantes acumulan artículos
 en buen estado que ya no utilizan y desean vender o intercambiar para recuperar parte de su
 inversión o liberar espacio en sus residencias
 
-Clientes y usuarios: Los usuarios principales de shareUS son estudiantes universitarios activos,
+- Clientes y usuarios: Los usuarios principales de shareUS son estudiantes universitarios activos,
 verificados mediante correo electrónico institucional (xxxxx@alum.us.es en el caso de sevilla). Este
 sistema asegura un entorno exclusivo, seguro y orientado específicamente a las necesidades
 estudiantiles.
 
-Situación actual: Actualmente, los estudiantes recurren principalmente a plataformas
+- Situación actual: Actualmente, los estudiantes recurren principalmente a plataformas
 generalistas como Wallapop, Vinted o grupos de Facebook para estas transacciones. Si bien
 estas herramientas son funcionales, presentan limitaciones importantes en el contexto
 universitario:
@@ -30,9 +30,15 @@ propio campus o ciudad universitaria
 académicas específicas
 -Comunicación dispersa: la cordinación y entregas se realizan fuera del campus universitario y dificultan la entrega siendo menos accesible para muchos estudiantes
 
-Problemas identificados:
+- Problemas identificados:
+-Inversión económica elevada en materiales que se utilizan durante un solo curso académico
+-Dificultad para localizar compradores/vendedores dentro del mismo entorno universitario
+-Desconfianza en transacciones con desconocidos sin respaldo institucional
+-Impacto ambiental negativo por desecho de objetos en buen estado
 
-Expectativas del proyecto:
+- Expectativas del proyecto: 
+
+
 ![alt text](<Imagen de WhatsApp 2025-10-16 a las 12.45.42_6c8c809e.jpg>)
 
 ## 2. Glosario de términos
