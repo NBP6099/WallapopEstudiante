@@ -51,7 +51,7 @@ comunidades universitarias españolas, facilitando:
 
 ## 2. Glosario de términos
 
-- Anuncio: Publicación creada por un usuario que contiene información sobre un articulo (Contiene: fotografía, descripción, precio, estado,ubicación)
+- Anuncio: Publicación visible en el portal dirigida a otros estudiantes de la Universidad de Sevilla con opción de añadir fotos, descripción, precio y ubicación para facilitar el contacto
 
 - Artículo/Producto: Bien material ofrecido para venta o intercambio en la plataforma (libros,
 apuntes, material académico, tecnología, muebles, ropa, etc.).
@@ -80,7 +80,7 @@ posteriormente.
 directamente el inventario ni las transacciones.
 
 - Moderador/Administrador: Usuario con permisos especiales para supervisar contenidos,
-validar anuncios, gestionar reportes y administrar la comunidad.
+validar anuncios, gestionar reportes y administrar la comunidad. Diferencias de permisos entre roles.
 
 - Perfil de usuario: Página personalizada que contiene información del estudiante (nombre,
 facultad, curso, valoración media, anuncios activos, historial).
@@ -106,7 +106,7 @@ intercambio.
 - Visibilidad de anuncio: Parámetro que determina qué usuarios pueden ver una publicación
 según filtros de facultad, curso o categoría.
 
-- Bloquear Usuario: Acción que permite a un usuario impedir que otro pueda comunicarse con él o visualizar sus anuncios. Esta opción se utiliza para evitar interacciones no deseadas o reportar comportamientos inapropiados dentro de la plataforma.
+- Bloquear Usuario: Acción para restringir la interacción o visualización de anuncios por parte de otro usuario, generalmente en casos de comportamientos inadecuados.
 
 ## 3. Visión general del sistema
 
