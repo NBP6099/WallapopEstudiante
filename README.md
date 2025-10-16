@@ -214,18 +214,44 @@ comunidad universitaria.
 
 ### 4.1. Requisitos funcionales
 
-#### R.F.01. Título requisito funcional
+#### R.F.01. Publicar anuncio
 
-Como [tipo de usuario]
-quiero [servicio]
-para [razón]
+
+Como estudiante vendedor
+quiero crear un anuncio con información detallada de un producto
+para ofrecerlo a otros estudiantes de mi universidad
 
 **Prueba de aceptación**
-- Descripción de la primera comprobación a realizar
-- Descripción de la segunda comprobación a realizar
-- Se debe aplicar la regla de negocio R.N.XX.
-- ...
+- El sistema debe solicitar obligatoriamente: título, descripción, categoría, precio, estado del producto, ubicación de entrega y al menos una fotografía  
+- El anuncio debe quedar en estado "borrador" hasta que el usuario lo active manualmente
+- El precio debe ser un valor numérico positivo inferior a 500€ (excepto aprobaciones especiales)
+- Se debe permitir subir entre 1 y 5 fotografías en formato JPG, PNG o WEBP, máximo 5 MB cada una
+- La fecha de publicación se registra automáticamente al activar el anuncio
+- Se debe aplicar R.N.01 (usuario verificado), R.N.04 (límites de caracteres) y R.N.06 (fotografía obligatoria)
 
+#### R.F.02 Buscar productos con filtros
+Como estudiante comprador
+quiero buscar productos aplicando filtros específicos
+para encontrar rápidamente artículos que necesito dentro del campus
+
+**Prueba de aceptación**
+- El sistema debe permitir filtrar simultáneamente por: categoría, facultad del vendedor, curso
+académico, rango de precios y estado del producto
+- Debe existir campo de búsqueda de texto libre que consulte en título y descripción
+- Los resultados deben ordenarse por relevancia, fecha de publicación (más recientes
+primero) o precio (ascendente/descendente)
+- Solo se muestran anuncios en estado "activo" y no reportados
+- Se debe aplicar R.N.02 (solo usuarios autenticados) y R.N.03 (visibilidad de anuncios
+activos)
+#### R.F.03. Contactar con vendedor
+Como estudiante comprador
+quiero enviar mensajes privados al vendedor de un anuncio
+para negociar detalles de precio, estado y coordinar entrega en el campus
+
+**Prueba de aceptación**
+- El chat debe abrirse desde la ficha detallada del anuncio mediante botón "Contactar"
+- Los mensajes se almacenan con marca temporal y aparecen ordenados cronológicamente
+- 
 #### 4.1.1. Requisitos de información
 
 ##### R.I.01. Título requisito de información
@@ -330,38 +356,6 @@ cuenta.
 
 
 ### 4.2. Mapa de historias de usuario (opcional)
-- Épica 1: Gestión de cuenta y perfil
-    - Registro con correo institucional
-    - Verificación de correo electrónico
-    - Inicio de sesión
-    - Edición de perfil personal
-    - Consultar valoraciones recibidas
-    - Consultar historial de transacciones (R.F.09)
-
-- Épica 2: Publicación y gestión de anuncios
-    - Publicar anuncio (R.F.01)
-    - Modificar o eliminar anuncio propio (R.F.06)
-    - Activar/desactivar anuncio
-    - Subir fotografías del producto
-    - Renovar anuncio próximo a caducar
-
-- Épica 3: Búsqueda y exploración
-    - Buscar productos con filtros avanzados (R.F.02)
-    - Consultar listado de anuncios activos (R.F.08)
-    - Visualizar detalle completo de anuncio
-    - Guardar anuncios en favoritos (R.F.04)
-
-- Épica 4: Comunicación y transacciones
-    - Contactar con vendedor mediante chat (R.F.03)
-    - Marcar transacción como completada
-    - Valorar transacción (R.F.05)
-
-- Épica 5: Moderación y seguridad
-    - Reportar anuncio o usuario (R.F.07)
-    - Bloquear usuario
-    - Administrar categorías del sistema (R.F.10)
-    - Revisar reportes pendientes
-    - Suspender o eliminar usuarios infractores
 
 ### 4.3. Requisitos no funcionales (opcional)
 
