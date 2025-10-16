@@ -365,10 +365,101 @@ cuenta.
 
 ### 4.3. Requisitos no funcionales (opcional)
 
-**R.N.F. 01. Título requisito no funcional**
-Como [tipo de usuario]
-quiero [servicio]
-para [razón]
+**R.N.F. 01. Rendimiento**
+
+**Como** usuario de la plataforma
+
+**quiero** que las operaciones se ejecuten rápidamente
+
+**para** tener una experiencia fluida sin esperas innecesarias
+
+El sistema debe mantener tiempo de respuesta inferior a 3 segundos para consultas habituales
+(búsquedas, carga de anuncios, envío de mensajes) bajo carga normal de hasta 100 usuarios
+concurrentes.
+
+**R.N.F. 02. Disponibilidad**
+
+**Como** estudiante usuario
+
+**quiero** que la plataforma esté disponible durante horario académico
+
+**para** poder realizar transacciones cuando más lo necesito
+
+La plataforma debe garantizar disponibilidad del 99% durante horario académico (08:00-22:00 horas en días laborables). Los mantenimientos programados deben realizarse fuera de este horario.
+**R.N.F. 03. Seguridad**
+
+**Como** usuario de shareUS
+
+**quiero** que mis datos personales estén protegidos
+
+**para** evitar accesos no autorizados o filtraciones de información
+
+- Todas las contraseñas deben almacenarse cifradas con bcrypt o Argon2
+- Las sesiones deben expirar tras 60 minutos de inactividad
+- Todas las comunicaciones con el servidor deben realizarse mediante HTTPS
+- Debe implementarse protección contra inyección SQL, XSS y CSRF
+
+
+**R.N.F. 04. Usabilidad**
+
+**Como** estudiante con diferentes niveles de competencia digital
+
+**quiero** que la interfaz sea intuitiva y fácil de usar
+
+**para poder** realizar transacciones sin necesidad de 
+formación previa
+
+La interfaz debe ser clara, accesible y cumplir con estándares WCAG 2.1 nivel AA. Los
+elementos clave (búsqueda, publicar anuncio, chat) deben ser accesibles en máximo 3 clics
+desde la página principal.
+
+**R.N.F. 05. Compatibilidad**
+
+**Como** estudiante que accede desde diferentes dispositivos
+
+**quiero** que la plataforma funcione correctamente en todos ellos
+
+**para** poder usarla desde cualquier lugar del campus
+
+La aplicación web debe funcionar correctamente en:
+- Navegadores: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+- Dispositivos: Escritorio (Windows, macOS, Linux), tablets y móviles (iOS 13+, Android 10+)
+- Resoluciones: desde 320px (móvil) hasta 1920px (escritorio)
+
+
+**R.N.F. 06. Escalabilidad**
+
+**Como** administrador del sistema
+
+**quiero** que la plataforma soporte crecimiento futuro
+
+**para** poder expandirla a otras universidades o facultades sin problemas técnicos
+
+El diseño de la base de datos y arquitectura debe permitir crecimiento hasta 10,000 usuarios
+activos y 50,000 anuncios sin degradación significativa del rendimiento.
+**R.N.F. 07. Mantenibilidad**
+
+**Como** desarrollador del proyecto
+
+**quiero** que el código esté bien documentado y estructurado
+
+**para** facilitar futuras correcciones y actualizaciones
+
+El código fuente debe estar documentado, seguir estándares de programación limpia y
+organizado modularmente para facilitar mantenimiento y evolución del sistema.
+
+**R.N.F. 08. Cumplimiento normativo**
+
+**Como** responsable del tratamiento de datos
+
+**quiero** que el sistema cumpla con la legislación vigente
+
+**para** evitar sanciones legales y proteger los derechos de los usuarios
+
+El sistema debe cumplir con:
+- RGPD (Reglamento General de Protección de Datos)
+- LOPDGDD (Ley Orgánica de Protección de Datos y Garantía de los Derechos Digitales)
+- LSSI-CE (Ley de Servicios de la Sociedad de la Información y Comercio Electrónico)
 
 -- fin entregable 1 --
 
