@@ -212,10 +212,9 @@ comunidad universitaria.
     
 ## 4. Catálogo de requisitos
 
-### 4.1. Requisitos funcionales
+### 4.1 Requisitos funcionales
 
 #### R.F.01. Publicar anuncio
-
 
 Como estudiante vendedor
 quiero crear un anuncio con información detallada de un producto
@@ -224,7 +223,6 @@ para ofrecerlo a otros estudiantes de mi universidad
 **Prueba de aceptación**
 - El sistema debe solicitar obligatoriamente: título, descripción, categoría, precio, estado del producto, ubicación de entrega y al menos una fotografía  
 - El anuncio debe quedar en estado "borrador" hasta que el usuario lo active manualmente
-- El precio debe ser un valor numérico positivo inferior a 500€ (excepto aprobaciones especiales)
 - Se debe permitir subir entre 1 y 5 fotografías en formato JPG, PNG o WEBP, máximo 5 MB cada una
 - La fecha de publicación se registra automáticamente al activar el anuncio
 - Se debe aplicar R.N.01 (usuario verificado), R.N.04 (límites de caracteres) y R.N.06 (fotografía obligatoria)
@@ -251,7 +249,105 @@ para negociar detalles de precio, estado y coordinar entrega en el campus
 **Prueba de aceptación**
 - El chat debe abrirse desde la ficha detallada del anuncio mediante botón "Contactar"
 - Los mensajes se almacenan con marca temporal y aparecen ordenados cronológicamente
-- 
+- El vendedor recibe notificación visual de nuevos mensajes no leídos
+- No se exponen datos personales directos (teléfono, email personal) hasta que los usuarios decidan compartirlos voluntariamente
+- Se debe aplicar R.N.02 (usuario autenticado) y R.N.08 (moderación de contenido
+inapropiado)
+#### R.F.04. Guardar anuncios en favoritos
+
+Como estudiante usuario
+quiero marcar anuncios de interés en una lista de favoritos
+para consultarlos posteriormente sin necesidad de volver a buscarlos
+**Prueba de aceptación**
+- Desde la ficha del anuncio debe existir icono/botón "Añadir a favoritos"
+- Los favoritos se visualizan en sección personal del perfil del usuario
+- Si el anuncio se elimina o cambia a estado "vendido", desaparece automáticamente de
+favoritos
+- El usuario puede eliminar anuncios de su lista en cualquier momento
+- Se debe aplicar R.N.02 (usuario autenticado)
+#### R.F.05. Valorar transacción
+Como estudiante comprador o vendedor
+quiero puntuar y comentar sobre la experiencia de una transacción
+para generar reputación pública que ayude a otros usuarios a tomar decisiones informadas
+
+**Pruebas de aceptación:**
+- Solo se puede valorar después de marcar la transacción como "completada" por ambas
+partes
+- La valoración incluye puntuación obligatoria (1-5 estrellas) y comentario opcional (máximo
+500 caracteres)
+- Cada usuario solo puede valorar una vez por transacción
+- Las valoraciones aparecen públicamente en el perfil del usuario valorado
+- La valoración media se recalcula automáticamente tras cada nueva valoración
+- Se debe aplicar R.N.09 (confirmación bilateral) y R.N.08 (moderación de comentarios
+ofensivos)
+
+#### R.F.06. Modificar o eliminar anuncio propio
+Como estudiante vendedor
+quiero editar la información de mis anuncios o eliminarlos
+para actualizar datos, corregir errores o retirar productos ya vendidos
+**Pruebas de aceptación:**
+- Solo el propietario del anuncio puede modificarlo o eliminarlo
+- Al editar, se permite cambiar todos los campos excepto el identificador único
+- Al eliminar, el sistema solicita confirmación mediante ventana modal
+- Los anuncios eliminados no aparecen en búsquedas ni en favoritos de otros usuarios
+- Se registra la fecha de última modificación visible públicamente
+- Se debe aplicar R.N.05 (anuncios inactivos tras 90 días sin actividad) y R.N.07 (trazabilidad
+de cambios)
+
+#### R.F.07. Reportar anuncio o usuario
+Como estudiante usuario
+quiero denunciar anuncios fraudulentos o comportamientos inadecuados
+para contribuir a mantener la seguridad y calidad de la plataforma
+
+**Pruebas de aceptación:**
+- Existe botón "Reportar" visible en cada anuncio y perfil de usuario
+- El reporte incluye motivo seleccionable: contenido ofensivo, fraude, spam, producto
+prohibido, comportamiento inadecuado
+- El sistema genera notificación automática al administrador
+- Un usuario no puede reportar más de 3 veces el mismo anuncio
+- Los anuncios con 3 o más reportes de diferentes usuarios se desactivan automáticamente
+hasta revisión
+- Se debe aplicar R.N.10 (revisión administrativa en 72 horas)
+
+#### R.F.08. Consultar listado de anuncios activos
+Como estudiante usuario
+quiero explorar todos los anuncios publicados recientemente
+para descubrir oportunidades de compra o intercambio que no había buscado activamente
+
+**Pruebas de aceptación:**
+- El listado muestra anuncios ordenados por fecha de publicación (más recientes primero) por
+defecto
+- Cada elemento incluye: imagen principal, título, precio, facultad del vendedor y fecha de
+publicación
+- Se implementa paginación mostrando 20 anuncios por página
+- Existe opción para cambiar vista entre cuadrícula (grid) y lista vertical
+- Se debe aplicar R.N.02 (usuarios verificados) y R.N.03 (solo anuncios activos aprobados)
+#### R.F.09. Consultar historial de transacciones
+Como estudiante usuario
+quiero revisar mi historial de compras y ventas
+para llevar control de transacciones realizadas y consultar detalles pasados
+
+**Pruebas de aceptación:**
+- El historial se divide en dos pestañas: "Como vendedor" y "Como comprador"
+- Cada registro muestra: producto, usuario involucrado, fecha, precio final y estado
+(completada/cancelada)
+- Permite filtrar por rango de fechas y estado
+- Solo el usuario propietario puede acceder a su propio historial (información privada)
+- Se debe aplicar R.N.09 (confirmación bilateral para transacciones completadas)
+
+#### R.F.10. Administrar categorías
+Como administrador
+quiero crear, modificar o eliminar categorías de productos
+para mantener organizada la clasificación de anuncios según evolucionen las necesidades
+
+**Pruebas de aceptación:**
+- El panel de administración lista todas las categorías existentes con contador de anuncios
+asociados
+- Al crear categoría, se solicita nombre, descripción breve e icono representativo
+- No se permite eliminar categorías con anuncios activos asociados (solo desactivarlas)
+- Los cambios se reflejan inmediatamente en la plataforma
+- Se debe aplicar R.N.11 (solo administradores tienen acceso)
+
 #### 4.1.1. Requisitos de información
 
 ##### R.I.01. Título requisito de información
@@ -337,11 +433,7 @@ Conforme al RGPD(Reglamento General de Protección de Datos) y LOPDGDD(Ley Orgá
 - No ceder datos personales a terceros sin consentimiento
 - Implementar política de privacidad y términos de uso accesibles
 - Permitir eliminación completa de cuenta y datos asociados (derecho al olvido)
-##### R.N.13.  Precio máximo de productos
-Para mantener el espíritu de intercambio estudiantil accesible, los anuncios no pueden superar
-un precio de 500€. Para artículos de mayor valor, se debe contactar con administración para
-solicitar aprobación excepcional justificada.
-##### R.N.14.  Productos prohibidos
+##### R.N.13.  Productos prohibidos
 Queda prohibida la publicación de anuncios que ofrezcan:
 - Sustancias ilegales o controladas
 - Armas o réplicas
