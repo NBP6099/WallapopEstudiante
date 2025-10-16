@@ -254,11 +254,195 @@ para negociar detalles de precio, estado y coordinar entrega en el campus
 - 
 #### 4.1.1. Requisitos de información
 
-##### R.I.01. Título requisito de información
+##### R.I.01. Información de usuario
 
-Como [tipo de usuario]
-quiero [servicio]
-para [razón]
+**Como** sistema
+
+**quiero** almacenar datos completos de cada estudiante registrado
+
+**para** gestionar autenticación, perfiles, transacciones y reputación
+
+**Datos a almacenar:**
+- Identificador único (autoincremental)
+- Nombre completo
+- Correo electrónico institucional (único, formato: - xxxxx@alum.us.es)
+- Contraseña cifrada (algoritmo bcrypt o Argon2)
+- Facultad/Centro de pertenencia
+- Curso académico actual (1º, 2º, 3º, 4º Grado, Máster, - Doctorado)
+- Fotografía de perfil (opcional, URL)
+- Descripción personal breve (opcional, máximo 300 - caracteres)
+- Fecha de registro
+- Estado de cuenta (activa, suspendida, eliminada)
+- Valoración media recibida (calculada automáticamente)
+- Número total de transacciones completadas
+- Rol (estudiante, administrador)
+**Pruebas de aceptación:**
+- El correo debe validarse con formato @alum.us.es (Dependiedno de la universidad. Ejemplo de universidad de Sevilla)
+- La contraseña debe cifrarse antes del almacenamiento
+- No pueden existir dos usuarios con el mismo correo - electrónico (clave única)
+- La valoración media se recalcula automáticamente tras cada nueva valoración recibida
+
+##### R.I.02. Información de anuncio
+
+**Como** sistema
+
+**quiero** registrar datos completos de cada anuncio
+
+**para** facilitar búsquedas, gestión, trazabilidad y 
+moderación
+**Datos a almacenar:**
+- Identificador único (autoincremental)
+- Título del anuncio (10-100 caracteres)
+- Descripción detallada (20-1000 caracteres)
+- Precio en euros (número decimal positivo < 500€) o - indicador "intercambio"
+- Estado del producto (nuevo, como nuevo, buen estado, - aceptable, para reparar)
+- Categoría (referencia a tabla Categorías)
+- Facultad del vendedor (referencia automática desde perfil de usuario)
+- Usuario propietario (referencia a tabla Usuarios)
+- Fecha y hora de publicación
+- Fecha de última modificación
+- Estado del anuncio (borrador, activo, vendido, inactivo, - eliminado)
+- Número de visualizaciones (contador)
+- Ubicación de entrega (campus, residencia, facultad específica)
+**Pruebas de aceptación:**
+- El título debe tener entre 10 y 100 caracteres (R.N.04)
+- La descripción debe tener entre 20 y 1000 caracteres (R.N. 04)
+- El precio debe ser decimal positivo o indicar modalidad - intercambio
+- Los anuncios sin actividad durante 90 días pasan automáticamente a "inactivo" (R.N.05)
+##### R.I.03. Información de fotografías de anuncios
+
+**Como** sistema
+
+**quiero** asociar múltiples imágenes a cada anuncio
+
+**para** mejorar la presentación visual y generar confianza en los compradores
+**Datos a almacenar:**
+- Identificador único (autoincremental)
+- Referencia al anuncio propietario (clave foránea)
+- URL de almacenamiento de la imagen
+- Orden de visualización (principal, secundaria, - terciaria...)
+- Fecha de carga
+- Tamaño del archivo en MB
+**Pruebas de aceptación:**
+- Cada anuncio debe tener mínimo 1 fotografía y máximo 5 (R.N.06)
+- Formatos permitidos: JPG, PNG, WEBP
+- Tamaño máximo por imagen: 5 MB
+- La primera imagen cargada se establece automáticamente - como principal
+
+##### R.I.04. Información de categorías
+
+**Como** sistema
+
+**quiero** mantener catálogo de categorías predefinidas
+
+**para** clasificar anuncios y facilitar búsquedas segmentadas
+**Datos a almacenar:**
+- Identificador único (autoincremental)
+- Nombre de categoría (único)
+- Descripción breve
+- Icono representativo (URL)
+- Estado (activa, inactiva)
+**Pruebas de aceptación:**
+- No pueden existir dos categorías con el mismo nombre
+- Solo administradores pueden crear o modificar categorías  (R.N.11)
+- Ejemplos predefinidos: Libros y Apuntes, Tecnología, - Muebles y Hogar, Ropa, Deportes,
+- Electrónica, Servicios
+
+
+##### R.I.05. Información de mensajes
+
+**Como** sistema
+
+**quiero** registrar conversaciones entre comprador y vendedor
+
+**para** mantener historial de comunicaciones y facilitar moderación
+**Datos a almacenar:**
+- Identificador único (autoincremental)
+- Referencia al anuncio relacionado
+- Usuario emisor (referencia)
+- Usuario receptor (referencia)
+- Contenido del mensaje (texto, máximo 1000 caracteres)
+- Fecha y hora de envío
+- Estado (enviado, leído, eliminado)
+**Pruebas de aceptación:**
+- Los mensajes se ordenan cronológicamente en la conversación
+- Solo participantes del chat pueden acceder a los mensajes
+- Los mensajes con contenido ofensivo pueden ser eliminados por moderadores (R.N.08)
+- El receptor recibe notificación de nuevos mensajes
+
+##### R.I.06. Información de valoraciones
+
+**Como** sistema
+
+**quiero** almacenar valoraciones entre usuarios
+
+**para** construir sistema de reputación y generar confianza en la comunidad
+**Datos a almacenar:**
+- Identificador único (autoincremental)
+- Usuario que emite valoración (referencia)
+- Usuario que recibe valoración (referencia)
+- Anuncio relacionado con la transacción (referencia)
+- Puntuación (entero 1-5 estrellas)
+- Comentario textual (opcional, máximo 500 caracteres)
+- Fecha de valoración
+- Tipo (como comprador / como vendedor)
+**Pruebas de aceptación:**
+- Solo se puede valorar tras confirmar transacción - completada (R.N.09)
+- Un usuario no puede valorarse a sí mismo
+- Solo se permite una valoración por usuario por transacción (unicidad)
+- La valoración media del usuario se recalcula - automáticamente
+
+##### R.I.07. Información de transacciones
+
+**Como** sistema
+
+**quiero** registrar transacciones entre usuarios
+
+**para** mantener historial, estadísticas y soporte en disputas
+**Datos a almacenar:**
+- Identificador único (autoincremental)
+- Anuncio involucrado (referencia)
+- Usuario comprador (referencia)
+- Usuario vendedor (referencia)
+- Fecha de inicio de contacto
+- Fecha de finalización
+- Estado (en negociación, confirmada por comprador, - confirmada por vendedor, completada,
+- cancelada)
+- Precio final acordado
+- Método de entrega (en persona campus, intercambio)
+**Pruebas de aceptación:**
+- La transacción se marca "completada" solo cuando ambas - partes confirman (R.N.09)
+- Tras completarse, el anuncio cambia automáticamente a - estado "vendido"
+- Las transacciones canceladas no afectan la valoración de usuarios
+- El historial es privado para cada usuario
+
+##### R.I.08. Información de reportes
+
+**Como** sistema
+
+**quiero** registrar reportes de usuarios sobre contenidos o comportamientos inadecuados
+
+**para** facilitar moderación y mantener seguridad de la plataforma
+**Datos a almacenar:**
+- Identificador único (autoincremental)
+- Usuario que realiza reporte (referencia)
+- Tipo de reporte (anuncio fraudulento, contenido ofensivo, spam, producto prohibido,
+- comportamiento inadecuado)
+- Anuncio reportado (referencia, si aplica)
+- Usuario reportado (referencia, si aplica)
+- Descripción del motivo (texto, máximo 500 caracteres)
+- Fecha del reporte
+- Estado (pendiente, en revisión, resuelto, desestimado)
+- Administrador que gestionó (referencia, si aplica)
+- Fecha de resolución
+- Acción tomada (advertencia, eliminación de anuncio, - suspensión temporal, expulsión)
+**Pruebas de aceptación:**
+- Un usuario no puede reportar más de 3 veces el mismo - anuncio
+- Reportes pendientes aparecen en panel de administración (R.N.10)
+- Al resolver, el administrador debe registrar acción tomada
+- Usuarios con múltiples reportes confirmados reciben advertencias progresivas
+
+
 
 **Prueba de aceptación**
 - Descripción de la primera comprobación a realizar
