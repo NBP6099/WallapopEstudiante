@@ -109,8 +109,63 @@ según filtros de facultad, curso o categoría.
 - Bloquear Usuario: Acción para restringir la interacción o visualización de anuncios por parte de otro usuario, generalmente en casos de comportamientos inadecuados.
 
 ## 3. Visión general del sistema
+- ShareUS es una plataforma web diseñada específicamente para facilitar el intercambio y la
+compraventa de artículos entre estudiantes de la Universidad de Sevilla. A diferencia de las
+plataformas comerciales generalistas, shareUS se centra en crear un entorno de confianza,
+cerrado y verificado, donde los estudiantes puedan realizar transacciones de manera segura y
+eficiente dentro del campus universitario.
 
+- El sistema busca optimizar la reutilización de materiales académicos y objetos de uso cotidiano,
+reduciendo costes para los estudiantes y fomentando prácticas sostenibles dentro de la
+comunidad universitaria.
 ### 3.1. Requisitos generales
+
+- <Strong>R.G.01. Plataforma web accesible y multiplataforma</Strong> 
+
+    El sistema debe ser accesible desde navegadores modernos (Chrome, Firefox, Safari, Edge) en
+    dispositivos de escritorio, tablets y móviles, adaptándose automáticamente al tamaño de
+    pantalla para garantizar una experiencia de usuario óptima en cualquier dispositivo.
+
+- <strong>R.G.02. Base de datos relacional MariaDB</strong>  
+
+  Toda la información del sistema (usuarios, anuncios, transacciones, mensajes, valoraciones) debe almacenarse en una base de datos relacional MariaDB, garantizando integridad referencial y la consistencia de datos.
+
+- <strong>R.G.03. Autenticación mediante correo institucional</strong> 
+
+  El acceso a la plataforma requiere registro obligatorio mediante correo electrónico institucional de la Universidad de Sevilla (formato: <em>xxxxx@alum.us.es</em>).  
+  El sistema debe enviar un correo de verificación con enlace de activación que caduca en 24 horas, asegurando que solo estudiantes activos puedan utilizar la plataforma.
+
+- <strong>R.G.04. Gestión completa de anuncios</strong>
+
+  Los usuarios deben poder crear, editar, activar, desactivar y eliminar sus propios anuncios.  
+  Cada anuncio debe incluir título, descripción, precio, estado del producto, categoría, fotografías y ubicación de entrega dentro del campus.
+
+- <strong>R.G.05. Sistema de búsqueda y filtrado avanzado</strong>  
+
+  La plataforma debe incluir un motor de búsqueda que permita filtrar anuncios por categoría, facultad, curso académico, rango de precios, estado del producto y palabras clave en título o descripción.
+
+- <strong>R.G.06. Sistema de mensajería interna</strong>
+
+  El sistema debe proporcionar un chat privado entre comprador y vendedor, integrado en la plataforma, que permita coordinar detalles de la transacción sin exponer datos personales externos (teléfono o correo personal).
+
+- <strong>R.G.07. Cumplimiento de protección de datos</strong>  
+
+  El tratamiento de información personal debe cumplir con el RGPD y la LOPDGDD, garantizando consentimiento informado, cifrado de contraseñas y los derechos de acceso, rectificación y supresión de datos.
+
+- <strong>R.G.08. Sistema de reputación mediante valoraciones</strong>
+
+  Compradores y vendedores deben poder valorarse mutuamente tras completar una transacción, generando un historial público de reputación que fomente la confianza entre usuarios.
+
+- <strong>R.G.09. Moderación y gestión administrativa</strong>  
+
+  Los administradores deben contar con herramientas para revisar reportes, validar o eliminar anuncios inapropiados, suspender cuentas infractoras y gestionar las categorías del sistema.
+
+- <strong>R.G.10. Seguridad y rendimiento</strong>  
+
+  El sistema debe mantener tiempos de respuesta inferiores  
+  a 3 segundos para operaciones habituales (búsquedas,  
+  carga de anuncios, envío de mensajes) y garantizar una  
+  disponibilidad del 99% durante el horario académico.
 
 ### 3.2. Usuarios del sistema
 
