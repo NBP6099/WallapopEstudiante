@@ -168,7 +168,48 @@ comunidad universitaria.
   disponibilidad del 99% durante el horario académico.
 
 ### 3.2. Usuarios del sistema
+- <strong>Estudiante registrado (Usuario estándar)</strong>
 
+    Estudiante activo de la Universidad de Sevilla que ha completado el proceso de verificación
+    mediante correo institucional.
+
+     <strong>Funcionalidades disponibles:</strong>
+    - Crear, modificar y eliminar sus propios anuncios
+    - Buscar anuncios utilizando filtros avanzados
+    - Contactar con vendedores mediante chat interno
+    - Guardar anuncios en lista de favoritos
+    - Marcar transacciones como completadas
+    - Valorar a otros usuarios tras completar transacciones
+    - Gestionar su perfil personal (foto, descripción, facultad, curso)
+    - Reportar anuncios o usuarios con comportamientos inadecuados
+    - Consultar su historial de transacciones
+    - Bloquear usuarios para evitar interacciones no deseadas
+
+- <strong>Administrador/Moderador</strong>
+
+     Usuario con permisos elevados responsable de supervisar el correcto funcionamiento de la
+    plataforma y garantizar el cumplimiento de las normas de la comunidad.
+    <strong>Funcionalidades disponibles:</strong>
+
+    - Todas las funcionalidades del usuario estándar
+    - Revisar y gestionar reportes de usuarios
+    - Validar, desactivar o eliminar anuncios que incumplan las normas
+    - Suspender temporalmente o eliminar cuentas de usuarios infractores
+    - Crear, modificar o eliminar categorías del sistema
+    - Acceder a estadísticas globales de uso (número de usuarios activos, anuncios publicados,transacciones completadas)
+    - Visualizar historial completo de modificaciones de anuncios
+    - Eliminar mensajes de chat con contenido inapropiado
+- <strong>Usuario no registrado (Visitante)</strong>  
+
+    Usuario con permisos elevados responsable de supervisar el correcto funcionamiento de la
+    plataforma y garantizar el cumplimiento de las normas de la comunidad.
+
+    <strong>Funcionalidades disponibles:</strong>
+    - Solo puede visualizar la página de inicio informativa del proyecto
+    - Acceder al formulario de registro
+    - Consultar términos y condiciones de uso
+    - <strong>No puede:</strong> ver anuncios, realizar búsquedas, contactar usuarios ni publicar productos
+    
 ## 4. Catálogo de requisitos
 
 ### 4.1. Requisitos funcionales
