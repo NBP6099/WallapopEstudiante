@@ -178,18 +178,52 @@ Todo anuncio debe incluir mínimo 1 fotografía y máximo 5. Las imágenes deben
 producto ofrecido, estar en formato JPG, PNG o WEBP, y no superar 5 MB por archivo.
 
 ##### R.N.07.  Trazabilidad de modificaciones
+Cada vez que un usuario modifica un anuncio (título, descripción, precio, estado), el sistema
+registra la fecha de última modificación. Esta fecha es visible públicamente. El historial completo
+de cambios solo es accesible para administradores.
 
 ##### R.N.08.  Moderación de contenido inapropiado
+Los mensajes de chat y comentarios en valoraciones que contengan palabras ofensivas,
+discriminatorias, datos personales sensibles externos o enlaces externos son marcados
+automáticamente para revisión administrativa. Los administradores pueden eliminar contenido
+inapropiado sin previo aviso.
 
 ##### R.N.09.  Confirmación bilateral de transacciones
+Una transacción solo se considera "completada" cuando ambos usuarios (comprador y
+vendedor) confirman independientemente que el intercambio se realizó satisfactoriamente. Solo
+tras esta confirmación bilateral se habilita el sistema de valoraciones mutuas.
 
 ##### R.N.10.   Gestión administrativa de reportes
+Los reportes deben ser revisados por un administrador en máximo 72 horas. Si un anuncio
+acumula 3 o más reportes de diferentes usuarios, se desactiva automáticamente hasta revisión.
+Usuarios con 5 reportes confirmados son suspendidos temporalmente (7 días). Tras 10 reportes
+confirmados, la cuenta se elimina permanentemente.
 
 ##### R.N.11.  Permisos exclusivos de administración
+Solo usuarios con rol "administrador" pueden:
+- Crear, modificar o eliminar categorías
+- Acceder al panel de gestión de reportes
+- Suspender o eliminar cuentas de usuario
+- Visualizar estadísticas globales de la plataforma
+- Acceder al historial completo de modificaciones de anuncios
+- Eliminar mensajes de chat inapropiados
 ##### R.N.12.  Protección de datos personales
-##### R.N.13.  Precio máximo de productos
-##### R.N.14.  Productos prohibidos
 
+##### R.N.13.  Precio máximo de productos
+Para mantener el espíritu de intercambio estudiantil accesible, los anuncios no pueden superar
+un precio de 500€. Para artículos de mayor valor, se debe contactar con administración para
+solicitar aprobación excepcional justificada.
+##### R.N.14.  Productos prohibidos
+Queda prohibida la publicación de anuncios que ofrezcan:
+- Sustancias ilegales o controladas
+- Armas o réplicas
+- Material académico que vulnere derechos de autor (solucionarios oficiales filtrados,
+exámenes)
+- Trabajos académicos para plagio (TFG, TFM, ensayos por encargo)
+- Animales vivos
+- Medicamentos sin prescripción
+La publicación de estos contenidos resulta en eliminación inmediata del anuncio y suspensión de
+cuenta.
 
 
 
