@@ -38,7 +38,8 @@ Expectativas del proyecto:
 ## 2. Glosario de términos
 
 - Anuncio: Publicación creada por un usuario que contiene información sobre un articulo (Contiene: fotografía, descripción, precio, estado,ubicación)
--Artículo/Producto: Bien material ofrecido para venta o intercambio en la plataforma (libros,
+
+- Artículo/Producto: Bien material ofrecido para venta o intercambio en la plataforma (libros,
 apuntes, material académico, tecnología, muebles, ropa, etc.).
 
 - Categoría: Clasificación temática de los productos (Libros y Apuntes, Tecnología, Muebles y
