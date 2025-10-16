@@ -289,6 +289,38 @@ cuenta.
 
 
 ### 4.2. Mapa de historias de usuario (opcional)
+- Épica 1: Gestión de cuenta y perfil
+    - Registro con correo institucional
+    - Verificación de correo electrónico
+    - Inicio de sesión
+    - Edición de perfil personal
+    - Consultar valoraciones recibidas
+    - Consultar historial de transacciones (R.F.09)
+
+- Épica 2: Publicación y gestión de anuncios
+    - Publicar anuncio (R.F.01)
+    - Modificar o eliminar anuncio propio (R.F.06)
+    - Activar/desactivar anuncio
+    - Subir fotografías del producto
+    - Renovar anuncio próximo a caducar
+
+- Épica 3: Búsqueda y exploración
+    - Buscar productos con filtros avanzados (R.F.02)
+    - Consultar listado de anuncios activos (R.F.08)
+    - Visualizar detalle completo de anuncio
+    - Guardar anuncios en favoritos (R.F.04)
+
+- Épica 4: Comunicación y transacciones
+    - Contactar con vendedor mediante chat (R.F.03)
+    - Marcar transacción como completada
+    - Valorar transacción (R.F.05)
+
+- Épica 5: Moderación y seguridad
+    - Reportar anuncio o usuario (R.F.07)
+    - Bloquear usuario
+    - Administrar categorías del sistema (R.F.10)
+    - Revisar reportes pendientes
+    - Suspender o eliminar usuarios infractores
 
 ### 4.3. Requisitos no funcionales (opcional)
 
