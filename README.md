@@ -24,8 +24,8 @@ estudiantiles.
 generalistas como Wallapop, Vinted o grupos de Facebook para estas transacciones. Si bien
 estas herramientas son funcionales, presentan limitaciones importantes en el contexto
 universitario:
-Alcance geográfico excesivamente amplio: dificulta encontrar productos disponibles en el
-propio campus o ciudad universitaria
+    - Alcance geográfico excesivamente amplio: dificulta encontrar productos disponibles en el
+    propio campus o ciudad universitaria
     - Ausencia de filtros académicos: no es posible buscar por curso, facultad o necesidades
         académicas específicas
     - Comunicación dispersa: la cordinación y entregas se realizan fuera del campus universitario y dificultan la entrega siendo menos accesible para muchos estudiantes
