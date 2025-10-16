@@ -145,9 +145,53 @@ para [razón]
 
 #### 4.1.2. Reglas de negocio
 
-##### R.N.01. Título regla negocio
+##### R.N.01. Verificación mediante correo institucional
+Solo pueden registrarse estudiantes con correo electrónico oficial de la Universidad (formato: xxxxx@alum.us.es ejemplo de la universidad de Sevilla). El sistema envía correo de confirmación con enlace de activación
+que expira en 24 horas. Hasta completar la verificación, el usuario no puede acceder a las
+funcionalidades de la plataforma.
 
-Descripción de la regla de negocio.
+##### R.N.02.  Acceso exclusivo a usuarios autenticados
+Los anuncios, búsquedas, perfiles y funcionalidades de contacto solo son accesibles para
+usuarios registrados con sesión activa. Los visitantes no autenticados únicamente pueden ver
+página de inicio y formulario de registro.
+
+##### R.N.03. Visibilidad de anuncios
+Solo se muestran en búsquedas y listados los anuncios con estado "activo" que no hayan sido
+reportados o estén bajo revisión. Los anuncios en estado "borrador", "vendido", "inactivo" o
+"eliminado" no aparecen en resultados públicos.
+
+##### R.N.04. Límites de caracteres
+- Título de anuncio: mínimo 10, máximo 100 caracteres
+- Descripción de anuncio: mínimo 20, máximo 1000 caracteres
+- Comentarios en valoraciones: máximo 500 caracteres
+- Descripción personal de perfil: máximo 300 caracteres
+Estos límites aseguran calidad informativa y legibilidad.
+
+##### R.N.05.  Caducidad automática de anuncios
+Los anuncios que permanezcan en estado "activo" sin modificaciones durante más de 90 días
+consecutivos pasan automáticamente a estado "inactivo". El sistema envía notificación al
+propietario 7 días antes de la inactivación, quien puede renovar el anuncio editándolo.
+
+
+##### R.N.06.  Fotografía obligatoria
+Todo anuncio debe incluir mínimo 1 fotografía y máximo 5. Las imágenes deben corresponder al
+producto ofrecido, estar en formato JPG, PNG o WEBP, y no superar 5 MB por archivo.
+
+##### R.N.07.  Trazabilidad de modificaciones
+
+##### R.N.08.  Moderación de contenido inapropiado
+
+##### R.N.09.  Confirmación bilateral de transacciones
+
+##### R.N.10.   Gestión administrativa de reportes
+
+##### R.N.11.  Permisos exclusivos de administración
+##### R.N.12.  Protección de datos personales
+##### R.N.13.  Precio máximo de productos
+##### R.N.14.  Productos prohibidos
+
+
+
 
 ### 4.2. Mapa de historias de usuario (opcional)
 
