@@ -200,9 +200,93 @@ para [razón]
 
 #### 4.1.2. Reglas de negocio
 
-##### R.N.01. Título regla negocio
+##### R.N.01. Verificación mediante correo institucional
+Solo pueden registrarse estudiantes con correo electrónico oficial de la Universidad (formato: xxxxx@alum.us.es ejemplo de la universidad de Sevilla). El sistema envía correo de confirmación con enlace de activación
+que expira en 24 horas. Hasta completar la verificación, el usuario no puede acceder a las
+funcionalidades de la plataforma.
 
-Descripción de la regla de negocio.
+##### R.N.02.  Acceso exclusivo a usuarios autenticados
+Los anuncios, búsquedas, perfiles y funcionalidades de contacto solo son accesibles para
+usuarios registrados con sesión activa. Los visitantes no autenticados únicamente pueden ver
+página de inicio y formulario de registro.
+
+##### R.N.03. Visibilidad de anuncios
+Solo se muestran en búsquedas y listados los anuncios con estado "activo" que no hayan sido
+reportados o estén bajo revisión. Los anuncios en estado "borrador", "vendido", "inactivo" o
+"eliminado" no aparecen en resultados públicos.
+
+##### R.N.04. Límites de caracteres
+- Título de anuncio: mínimo 10, máximo 100 caracteres
+- Descripción de anuncio: mínimo 20, máximo 1000 caracteres
+- Comentarios en valoraciones: máximo 500 caracteres
+- Descripción personal de perfil: máximo 300 caracteres
+Estos límites aseguran calidad informativa y legibilidad.
+
+##### R.N.05.  Caducidad automática de anuncios
+Los anuncios que permanezcan en estado "activo" sin modificaciones durante más de 90 días
+consecutivos pasan automáticamente a estado "inactivo". El sistema envía notificación al
+propietario 7 días antes de la inactivación, quien puede renovar el anuncio editándolo.
+
+
+##### R.N.06.  Fotografía obligatoria
+Todo anuncio debe incluir mínimo 1 fotografía y máximo 5. Las imágenes deben corresponder al
+producto ofrecido, estar en formato JPG, PNG o WEBP, y no superar 5 MB por archivo.
+
+##### R.N.07.  Trazabilidad de modificaciones
+Cada vez que un usuario modifica un anuncio (título, descripción, precio, estado), el sistema
+registra la fecha de última modificación. Esta fecha es visible públicamente. El historial completo
+de cambios solo es accesible para administradores.
+
+##### R.N.08.  Moderación de contenido inapropiado
+Los mensajes de chat y comentarios en valoraciones que contengan palabras ofensivas,
+discriminatorias, datos personales sensibles externos o enlaces externos son marcados
+automáticamente para revisión administrativa. Los administradores pueden eliminar contenido
+inapropiado sin previo aviso.
+
+##### R.N.09.  Confirmación bilateral de transacciones
+Una transacción solo se considera "completada" cuando ambos usuarios (comprador y
+vendedor) confirman independientemente que el intercambio se realizó satisfactoriamente. Solo
+tras esta confirmación bilateral se habilita el sistema de valoraciones mutuas.
+
+##### R.N.10.   Gestión administrativa de reportes
+Los reportes deben ser revisados por un administrador en máximo 72 horas. Si un anuncio
+acumula 3 o más reportes de diferentes usuarios, se desactiva automáticamente hasta revisión.
+Usuarios con 5 reportes confirmados son suspendidos temporalmente (7 días). Tras 10 reportes
+confirmados, la cuenta se elimina permanentemente.
+
+##### R.N.11.  Permisos exclusivos de administración
+Solo usuarios con rol "administrador" pueden:
+- Crear, modificar o eliminar categorías
+- Acceder al panel de gestión de reportes
+- Suspender o eliminar cuentas de usuario
+- Visualizar estadísticas globales de la plataforma
+- Acceder al historial completo de modificaciones de anuncios
+- Eliminar mensajes de chat inapropiados
+##### R.N.12.  Protección de datos personales
+Conforme al RGPD(Reglamento General de Protección de Datos) y LOPDGDD(Ley Orgánica de Protección de Datos Personales y garantía de los derechos digitales), el sistema debe:
+- Solicitar consentimiento expreso en el registro para tratamiento de datos
+- Permitir ejercer derechos de acceso, rectificación, supresión y portabilidad
+- Cifrar contraseñas mediante algoritmos seguros (bcrypt, Argon2)
+- No ceder datos personales a terceros sin consentimiento
+- Implementar política de privacidad y términos de uso accesibles
+- Permitir eliminación completa de cuenta y datos asociados (derecho al olvido)
+##### R.N.13.  Precio máximo de productos
+Para mantener el espíritu de intercambio estudiantil accesible, los anuncios no pueden superar
+un precio de 500€. Para artículos de mayor valor, se debe contactar con administración para
+solicitar aprobación excepcional justificada.
+##### R.N.14.  Productos prohibidos
+Queda prohibida la publicación de anuncios que ofrezcan:
+- Sustancias ilegales o controladas
+- Armas o réplicas
+- Material académico que vulnere derechos de autor (solucionarios oficiales filtrados,
+exámenes)
+- Trabajos académicos para plagio (TFG, TFM, ensayos por encargo)
+- Animales vivos
+- Medicamentos sin prescripción
+La publicación de estos contenidos resulta en eliminación inmediata del anuncio y suspensión de
+cuenta.
+
+
 
 ### 4.2. Mapa de historias de usuario (opcional)
 
