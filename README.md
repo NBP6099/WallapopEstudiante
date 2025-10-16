@@ -7,8 +7,13 @@
 1. López-Cano Liviano, Gonzalo
 
 ## 1. Introducción al problema
+En el entorno universitario español, los estudiantes enfrentan necesidades recurrentes de
+adquirir materiales académicos (libros de texto, apuntes, calculadoras científicas, material de
+laboratorio) y objetos de uso cotidiano (muebles, electrodomésticos, decoración, equipos
+deportivos, ropa) a precios asequibles. Muchos estudiantes acumulan artículos
+en buen estado que ya no utilizan y desean vender o intercambiar para recuperar parte de su
+inversión o liberar espacio en sus residencias
 
-- Descripción del problema para poner en contexto el proyecto, incluyendo información sobre los clientes y usuarios, la situación actual, problemas, expectativas, etc. Se valorará la presencia de información multimedia (fotos, gráficos, documentos escaneados, etc.).
 
 ## 2. Glosario de términos
 
