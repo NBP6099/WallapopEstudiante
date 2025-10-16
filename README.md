@@ -208,7 +208,13 @@ Solo usuarios con rol "administrador" pueden:
 - Acceder al historial completo de modificaciones de anuncios
 - Eliminar mensajes de chat inapropiados
 ##### R.N.12.  Protección de datos personales
-
+Conforme al RGPD(Reglamento General de Protección de Datos) y LOPDGDD(Ley Orgánica de Protección de Datos Personales y garantía de los derechos digitales), el sistema debe:
+- Solicitar consentimiento expreso en el registro para tratamiento de datos
+- Permitir ejercer derechos de acceso, rectificación, supresión y portabilidad
+- Cifrar contraseñas mediante algoritmos seguros (bcrypt, Argon2)
+- No ceder datos personales a terceros sin consentimiento
+- Implementar política de privacidad y términos de uso accesibles
+- Permitir eliminación completa de cuenta y datos asociados (derecho al olvido)
 ##### R.N.13.  Precio máximo de productos
 Para mantener el espíritu de intercambio estudiantil accesible, los anuncios no pueden superar
 un precio de 500€. Para artículos de mayor valor, se debe contactar con administración para
