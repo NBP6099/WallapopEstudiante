@@ -4,7 +4,7 @@
 ## Miembros del grupo L7-5 
 
 1. Ramos Torres, Alberto
-1. Lopez-Cano Liviano, Gonzalo
+1. López-Cano Liviano, Gonzalo
 
 ## 1. Introducción al problema
 
