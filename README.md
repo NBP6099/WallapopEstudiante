@@ -361,7 +361,7 @@ asociados
 **Datos a almacenar:**
 - Identificador único (autoincremental)
 - Nombre completo
-- Correo electrónico institucional (único, formato: - xxxxx@alum.us.es)
+- Correo electrónico institucional (único, formato: - xxxxx@alum.us.es Ejemplo de la universidad de sevilla, depederá de la universidad)
 - Contraseña cifrada (algoritmo bcrypt o Argon2)
 - Facultad/Centro de pertenencia
 - Curso académico actual (1º, 2º, 3º, 4º Grado, Máster, - Doctorado)
@@ -372,6 +372,7 @@ asociados
 - Valoración media recibida (calculada automáticamente)
 - Número total de transacciones completadas
 - Rol (estudiante, administrador)
+
 **Pruebas de aceptación:**
 - El correo debe validarse con formato @alum.us.es (Dependiedno de la universidad. Ejemplo de universidad de Sevilla)
 - La contraseña debe cifrarse antes del almacenamiento
@@ -386,6 +387,7 @@ asociados
 
 **para** facilitar búsquedas, gestión, trazabilidad y 
 moderación
+
 **Datos a almacenar:**
 - Identificador único (autoincremental)
 - Título del anuncio (10-100 caracteres)
@@ -400,11 +402,13 @@ moderación
 - Estado del anuncio (borrador, activo, vendido, inactivo, - eliminado)
 - Número de visualizaciones (contador)
 - Ubicación de entrega (campus, residencia, facultad específica)
+
 **Pruebas de aceptación:**
 - El título debe tener entre 10 y 100 caracteres (R.N.04)
 - La descripción debe tener entre 20 y 1000 caracteres (R.N. 04)
 - El precio debe ser decimal positivo o indicar modalidad - intercambio
 - Los anuncios sin actividad durante 90 días pasan automáticamente a "inactivo" (R.N.05)
+
 ##### R.I.03. Información de fotografías de anuncios
 
 **Como** sistema
@@ -412,6 +416,7 @@ moderación
 **quiero** asociar múltiples imágenes a cada anuncio
 
 **para** mejorar la presentación visual y generar confianza en los compradores
+
 **Datos a almacenar:**
 - Identificador único (autoincremental)
 - Referencia al anuncio propietario (clave foránea)
@@ -419,6 +424,7 @@ moderación
 - Orden de visualización (principal, secundaria, - terciaria...)
 - Fecha de carga
 - Tamaño del archivo en MB
+
 **Pruebas de aceptación:**
 - Cada anuncio debe tener mínimo 1 fotografía y máximo 5 (R.N.06)
 - Formatos permitidos: JPG, PNG, WEBP
@@ -432,12 +438,14 @@ moderación
 **quiero** mantener catálogo de categorías predefinidas
 
 **para** clasificar anuncios y facilitar búsquedas segmentadas
+
 **Datos a almacenar:**
 - Identificador único (autoincremental)
 - Nombre de categoría (único)
 - Descripción breve
 - Icono representativo (URL)
 - Estado (activa, inactiva)
+
 **Pruebas de aceptación:**
 - No pueden existir dos categorías con el mismo nombre
 - Solo administradores pueden crear o modificar categorías  (R.N.11)
@@ -452,6 +460,7 @@ moderación
 **quiero** registrar conversaciones entre comprador y vendedor
 
 **para** mantener historial de comunicaciones y facilitar moderación
+
 **Datos a almacenar:**
 - Identificador único (autoincremental)
 - Referencia al anuncio relacionado
@@ -460,6 +469,7 @@ moderación
 - Contenido del mensaje (texto, máximo 1000 caracteres)
 - Fecha y hora de envío
 - Estado (enviado, leído, eliminado)
+
 **Pruebas de aceptación:**
 - Los mensajes se ordenan cronológicamente en la conversación
 - Solo participantes del chat pueden acceder a los mensajes
@@ -473,6 +483,7 @@ moderación
 **quiero** almacenar valoraciones entre usuarios
 
 **para** construir sistema de reputación y generar confianza en la comunidad
+
 **Datos a almacenar:**
 - Identificador único (autoincremental)
 - Usuario que emite valoración (referencia)
@@ -482,6 +493,7 @@ moderación
 - Comentario textual (opcional, máximo 500 caracteres)
 - Fecha de valoración
 - Tipo (como comprador / como vendedor)
+
 **Pruebas de aceptación:**
 - Solo se puede valorar tras confirmar transacción - completada (R.N.09)
 - Un usuario no puede valorarse a sí mismo
@@ -495,6 +507,7 @@ moderación
 **quiero** registrar transacciones entre usuarios
 
 **para** mantener historial, estadísticas y soporte en disputas
+
 **Datos a almacenar:**
 - Identificador único (autoincremental)
 - Anuncio involucrado (referencia)
@@ -506,6 +519,7 @@ moderación
 - cancelada)
 - Precio final acordado
 - Método de entrega (en persona campus, intercambio)
+
 **Pruebas de aceptación:**
 - La transacción se marca "completada" solo cuando ambas - partes confirman (R.N.09)
 - Tras completarse, el anuncio cambia automáticamente a - estado "vendido"
@@ -519,6 +533,7 @@ moderación
 **quiero** registrar reportes de usuarios sobre contenidos o comportamientos inadecuados
 
 **para** facilitar moderación y mantener seguridad de la plataforma
+
 **Datos a almacenar:**
 - Identificador único (autoincremental)
 - Usuario que realiza reporte (referencia)
@@ -532,18 +547,13 @@ moderación
 - Administrador que gestionó (referencia, si aplica)
 - Fecha de resolución
 - Acción tomada (advertencia, eliminación de anuncio, - suspensión temporal, expulsión)
+
 **Pruebas de aceptación:**
 - Un usuario no puede reportar más de 3 veces el mismo - anuncio
 - Reportes pendientes aparecen en panel de administración (R.N.10)
 - Al resolver, el administrador debe registrar acción tomada
 - Usuarios con múltiples reportes confirmados reciben advertencias progresivas
 
-
-
-**Prueba de aceptación**
-- Descripción de la primera comprobación a realizar
-- Descripción de la segunda comprobación a realizar
-- ...
 
 #### 4.1.2. Reglas de negocio
 
