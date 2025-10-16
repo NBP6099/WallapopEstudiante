@@ -31,10 +31,10 @@ académicas específicas
 -Comunicación dispersa: la cordinación y entregas se realizan fuera del campus universitario y dificultan la entrega siendo menos accesible para muchos estudiantes
 
 - Problemas identificados:
--Inversión económica elevada en materiales que se utilizan durante un solo curso académico
--Dificultad para localizar compradores/vendedores dentro del mismo entorno universitario
--Desconfianza en transacciones con desconocidos sin respaldo institucional
--Impacto ambiental negativo por desecho de objetos en buen estado
+    - Inversión económica elevada en materiales que se utilizan durante un solo curso académico
+    - Dificultad para localizar compradores/vendedores dentro del mismo entorno universitario
+    - Desconfianza en transacciones con desconocidos sin respaldo institucional
+    - Impacto ambiental negativo por desecho de objetos en buen estado
 
 - Expectativas del proyecto: shareUS pretende convertirse en el marketplace de referencia para
 comunidades universitarias españolas, facilitando:
@@ -52,7 +52,8 @@ comunidades universitarias españolas, facilitando:
 ## 2. Glosario de términos
 
 - Anuncio: Publicación creada por un usuario que contiene información sobre un articulo (Contiene: fotografía, descripción, precio, estado,ubicación)
--Artículo/Producto: Bien material ofrecido para venta o intercambio en la plataforma (libros,
+
+- Artículo/Producto: Bien material ofrecido para venta o intercambio en la plataforma (libros,
 apuntes, material académico, tecnología, muebles, ropa, etc.).
 
 - Categoría: Clasificación temática de los productos (Libros y Apuntes, Tecnología, Muebles y
