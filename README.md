@@ -120,47 +120,40 @@ reduciendo costes para los estudiantes y fomentando prácticas sostenibles dentr
 comunidad universitaria.
 ### 3.1. Requisitos generales
 (reducir gestion...)
-- <Strong>R.G.01. Plataforma web accesible y multiplataforma</Strong> (requisito no funcional)
 
-    El sistema debe ser accesible desde navegadores modernos (Chrome, Firefox, Safari, Edge) en
-    dispositivos de escritorio, tablets y móviles, adaptándose automáticamente al tamaño de
-    pantalla para garantizar una experiencia de usuario óptima en cualquier dispositivo.
-
-- <strong>R.G.02. Base de datos relacional MariaDB</strong>  
+- <strong>R.G.01. Base de datos relacional MariaDB</strong>  
 
   Toda la información del sistema (usuarios, anuncios, transacciones, mensajes, valoraciones) debe almacenarse en una base de datos relacional MariaDB, garantizando integridad referencial y la consistencia de datos.
 
-- <strong>R.G.03. Autenticación mediante correo institucional</strong> 
+- <strong>R.G.02. Autenticación mediante correo institucional</strong> 
 
   El acceso a la plataforma requiere registro obligatorio mediante correo electrónico institucional de la Universidad de Sevilla (formato: <em>xxxxx@alum.us.es</em>).  
   El sistema debe enviar un correo de verificación con enlace de activación que caduca en 24 horas, asegurando que solo estudiantes activos puedan utilizar la plataforma.
 
-- <strong>R.G.04. Gestión completa de anuncios</strong> (requisito funcional)
 
   Los usuarios deben poder crear, editar, activar, desactivar y eliminar sus propios anuncios.  
   Cada anuncio debe incluir título, descripción, precio, estado del producto, categoría, fotografías y ubicación de entrega dentro del campus.
 
-- <strong>R.G.05. Sistema de búsqueda y filtrado avanzado</strong>  
+- <strong>R.G.03. Sistema de búsqueda y filtrado avanzado</strong>  
 
   La plataforma debe incluir un motor de búsqueda que permita filtrar anuncios por categoría, facultad, curso académico, rango de precios, estado del producto y palabras clave en título o descripción.
 
-- <strong>R.G.06. Sistema de mensajería interna</strong>
+- <strong>R.G.04. Sistema de mensajería interna</strong>
 
   El sistema debe proporcionar un chat privado entre comprador y vendedor, integrado en la plataforma, que permita coordinar detalles de la transacción sin exponer datos personales externos (teléfono o correo personal).
 
-- <strong>R.G.07. Cumplimiento de protección de datos</strong>  (borrar)
 
   El tratamiento de información personal debe cumplir con el RGPD y la LOPDGDD, garantizando consentimiento informado, cifrado de contraseñas y los derechos de acceso, rectificación y supresión de datos.
 
-- <strong>R.G.08. Sistema de reputación mediante valoraciones</strong>
+- <strong>R.G.05. Sistema de reputación mediante valoraciones</strong>
 
   Compradores y vendedores deben poder valorarse mutuamente tras completar una transacción, generando un historial público de reputación que fomente la confianza entre usuarios.
 
-- <strong>R.G.09. Moderación y gestión administrativa</strong>  
+- <strong>R.G.06. Moderación y gestión administrativa</strong>  
 
   Los administradores deben contar con herramientas para revisar reportes, validar o eliminar anuncios inapropiados, suspender cuentas infractoras y gestionar las categorías del sistema.
 
-- <strong>R.G.10. Seguridad y rendimiento</strong>  
+- <strong>R.G.07. Seguridad y rendimiento</strong>  
 
   El sistema debe mantener tiempos de respuesta inferiores  
   a 3 segundos para operaciones habituales (búsquedas,  
@@ -580,29 +573,18 @@ propietario 7 días antes de la inactivación, quien puede renovar el anuncio ed
 Todo anuncio debe incluir mínimo 1 fotografía y máximo 5. Las imágenes deben corresponder al
 producto ofrecido, estar en formato JPG, PNG o WEBP, y no superar 5 MB por archivo.
 
-##### R.N.07.  Trazabilidad de modificaciones
-Cada vez que un usuario modifica un anuncio (título, descripción, precio, estado), el sistema
-registra la fecha de última modificación. Esta fecha es visible públicamente. El historial completo
-de cambios solo es accesible para administradores.
-## Borrar
-##### R.N.08.  Moderación de contenido inapropiado
-Los mensajes de chat y comentarios en valoraciones que contengan palabras ofensivas,
-discriminatorias, datos personales sensibles externos o enlaces externos son marcados
-automáticamente para revisión administrativa. Los administradores pueden eliminar contenido
-inapropiado sin previo aviso.
-## Borrar
-##### R.N.09.  Confirmación bilateral de transacciones
+##### R.N.07.  Confirmación bilateral de transacciones
 Una transacción solo se considera "completada" cuando ambos usuarios (comprador y
 vendedor) confirman independientemente que el intercambio se realizó satisfactoriamente. Solo
 tras esta confirmación bilateral se habilita el sistema de valoraciones mutuas.
-## Esta OK
-##### R.N.10.   Gestión administrativa de reportes
+
+##### R.N.08.   Gestión administrativa de reportes
 Los reportes deben ser revisados por un administrador en máximo 72 horas. Si un anuncio
 acumula 3 o más reportes de diferentes usuarios, se desactiva automáticamente hasta revisión.
 Usuarios con 5 reportes confirmados son suspendidos temporalmente (7 días). Tras 10 reportes
 confirmados, la cuenta se elimina permanentemente.
 
-##### R.N.11.  Permisos exclusivos de administración
+##### R.N.09.  Permisos exclusivos de administración
 Solo usuarios con rol "administrador" pueden:
 - Crear, modificar o eliminar categorías
 - Acceder al panel de gestión de reportes
@@ -610,7 +592,7 @@ Solo usuarios con rol "administrador" pueden:
 - Visualizar estadísticas globales de la plataforma
 - Acceder al historial completo de modificaciones de anuncios
 - Eliminar mensajes de chat inapropiados
-##### R.N.12.  Protección de datos personales
+##### R.N.10.  Protección de datos personales
 Conforme al RGPD(Reglamento General de Protección de Datos) y LOPDGDD(Ley Orgánica de Protección de Datos Personales y garantía de los derechos digitales), el sistema debe:
 - Solicitar consentimiento expreso en el registro para tratamiento de datos
 - Permitir ejercer derechos de acceso, rectificación, supresión y portabilidad
@@ -618,7 +600,7 @@ Conforme al RGPD(Reglamento General de Protección de Datos) y LOPDGDD(Ley Orgá
 - No ceder datos personales a terceros sin consentimiento
 - Implementar política de privacidad y términos de uso accesibles
 - Permitir eliminación completa de cuenta y datos asociados (derecho al olvido)
-##### R.N.13.  Productos prohibidos
+##### R.N.11.  Productos prohibidos
 Queda prohibida la publicación de anuncios que ofrezcan:
 - Sustancias ilegales o controladas
 - Armas o réplicas
