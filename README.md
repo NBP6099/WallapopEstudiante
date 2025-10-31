@@ -119,8 +119,8 @@ eficiente dentro del campus universitario.
 reduciendo costes para los estudiantes y fomentando prácticas sostenibles dentro de la
 comunidad universitaria.
 ### 3.1. Requisitos generales
-
-- <Strong>R.G.01. Plataforma web accesible y multiplataforma</Strong> 
+(reducir gestion...)
+- <Strong>R.G.01. Plataforma web accesible y multiplataforma</Strong> (requisito no funcional)
 
     El sistema debe ser accesible desde navegadores modernos (Chrome, Firefox, Safari, Edge) en
     dispositivos de escritorio, tablets y móviles, adaptándose automáticamente al tamaño de
@@ -135,7 +135,7 @@ comunidad universitaria.
   El acceso a la plataforma requiere registro obligatorio mediante correo electrónico institucional de la Universidad de Sevilla (formato: <em>xxxxx@alum.us.es</em>).  
   El sistema debe enviar un correo de verificación con enlace de activación que caduca en 24 horas, asegurando que solo estudiantes activos puedan utilizar la plataforma.
 
-- <strong>R.G.04. Gestión completa de anuncios</strong>
+- <strong>R.G.04. Gestión completa de anuncios</strong> (requisito funcional)
 
   Los usuarios deben poder crear, editar, activar, desactivar y eliminar sus propios anuncios.  
   Cada anuncio debe incluir título, descripción, precio, estado del producto, categoría, fotografías y ubicación de entrega dentro del campus.
@@ -148,7 +148,7 @@ comunidad universitaria.
 
   El sistema debe proporcionar un chat privado entre comprador y vendedor, integrado en la plataforma, que permita coordinar detalles de la transacción sin exponer datos personales externos (teléfono o correo personal).
 
-- <strong>R.G.07. Cumplimiento de protección de datos</strong>  
+- <strong>R.G.07. Cumplimiento de protección de datos</strong>  (borrar)
 
   El tratamiento de información personal debe cumplir con el RGPD y la LOPDGDD, garantizando consentimiento informado, cifrado de contraseñas y los derechos de acceso, rectificación y supresión de datos.
 
@@ -167,13 +167,13 @@ comunidad universitaria.
   carga de anuncios, envío de mensajes) y garantizar una  
   disponibilidad del 99% durante el horario académico.
 
-### 3.2. Usuarios del sistema
+### 3.2. Usuarios del sistema 
 - <strong>Estudiante registrado (Usuario estándar)</strong>
 
     Estudiante activo de la Universidad de Sevilla que ha completado el proceso de verificación
     mediante correo institucional.
 
-     <strong>Funcionalidades disponibles:</strong>
+     <strong>Funcionalidades disponibles:</strong> 
     - Crear, modificar y eliminar sus propios anuncios
     - Buscar anuncios utilizando filtros avanzados
     - Contactar con vendedores mediante chat interno
@@ -287,7 +287,6 @@ quiero editar la información de mis anuncios o eliminarlos
 para actualizar datos, corregir errores o retirar productos ya vendidos
 **Pruebas de aceptación:**
 - Solo el propietario del anuncio puede modificarlo o eliminarlo
-- Al editar, se permite cambiar todos los campos excepto el identificador único
 - Al eliminar, el sistema solicita confirmación mediante ventana modal
 - Los anuncios eliminados no aparecen en búsquedas ni en favoritos de otros usuarios
 - Se registra la fecha de última modificación visible públicamente
@@ -359,7 +358,6 @@ asociados
 **para** gestionar autenticación, perfiles, transacciones y reputación
 
 **Datos a almacenar:**
-- Identificador único (autoincremental)
 - Nombre completo
 - Correo electrónico institucional (único, formato: - xxxxx@alum.us.es Ejemplo de la universidad de sevilla, depederá de la universidad)
 - Contraseña cifrada (algoritmo bcrypt o Argon2)
@@ -389,7 +387,6 @@ asociados
 moderación
 
 **Datos a almacenar:**
-- Identificador único (autoincremental)
 - Título del anuncio (10-100 caracteres)
 - Descripción detallada (20-1000 caracteres)
 - Precio en euros (número decimal positivo < 500€) o - indicador "intercambio"
@@ -418,7 +415,6 @@ moderación
 **para** mejorar la presentación visual y generar confianza en los compradores
 
 **Datos a almacenar:**
-- Identificador único (autoincremental)
 - Referencia al anuncio propietario (clave foránea)
 - URL de almacenamiento de la imagen
 - Orden de visualización (principal, secundaria, - terciaria...)
@@ -440,7 +436,6 @@ moderación
 **para** clasificar anuncios y facilitar búsquedas segmentadas
 
 **Datos a almacenar:**
-- Identificador único (autoincremental)
 - Nombre de categoría (único)
 - Descripción breve
 - Icono representativo (URL)
@@ -462,7 +457,6 @@ moderación
 **para** mantener historial de comunicaciones y facilitar moderación
 
 **Datos a almacenar:**
-- Identificador único (autoincremental)
 - Referencia al anuncio relacionado
 - Usuario emisor (referencia)
 - Usuario receptor (referencia)
@@ -485,7 +479,6 @@ moderación
 **para** construir sistema de reputación y generar confianza en la comunidad
 
 **Datos a almacenar:**
-- Identificador único (autoincremental)
 - Usuario que emite valoración (referencia)
 - Usuario que recibe valoración (referencia)
 - Anuncio relacionado con la transacción (referencia)
@@ -509,7 +502,6 @@ moderación
 **para** mantener historial, estadísticas y soporte en disputas
 
 **Datos a almacenar:**
-- Identificador único (autoincremental)
 - Anuncio involucrado (referencia)
 - Usuario comprador (referencia)
 - Usuario vendedor (referencia)
@@ -535,7 +527,6 @@ moderación
 **para** facilitar moderación y mantener seguridad de la plataforma
 
 **Datos a almacenar:**
-- Identificador único (autoincremental)
 - Usuario que realiza reporte (referencia)
 - Tipo de reporte (anuncio fraudulento, contenido ofensivo, spam, producto prohibido,
 - comportamiento inadecuado)
