@@ -584,18 +584,18 @@ producto ofrecido, estar en formato JPG, PNG o WEBP, y no superar 5 MB por archi
 Cada vez que un usuario modifica un anuncio (título, descripción, precio, estado), el sistema
 registra la fecha de última modificación. Esta fecha es visible públicamente. El historial completo
 de cambios solo es accesible para administradores.
-
+## Borrar
 ##### R.N.08.  Moderación de contenido inapropiado
 Los mensajes de chat y comentarios en valoraciones que contengan palabras ofensivas,
 discriminatorias, datos personales sensibles externos o enlaces externos son marcados
 automáticamente para revisión administrativa. Los administradores pueden eliminar contenido
 inapropiado sin previo aviso.
-
+## Borrar
 ##### R.N.09.  Confirmación bilateral de transacciones
 Una transacción solo se considera "completada" cuando ambos usuarios (comprador y
 vendedor) confirman independientemente que el intercambio se realizó satisfactoriamente. Solo
 tras esta confirmación bilateral se habilita el sistema de valoraciones mutuas.
-
+## Esta OK
 ##### R.N.10.   Gestión administrativa de reportes
 Los reportes deben ser revisados por un administrador en máximo 72 horas. Si un anuncio
 acumula 3 o más reportes de diferentes usuarios, se desactiva automáticamente hasta revisión.
@@ -740,9 +740,8 @@ El sistema debe cumplir con:
 
 - con restricciones.
 
-### 5.2. Escenarios de prueba
-
-- con descripción textual y diagrama de objetos UML.
+### 5.2. Escenarios de prueba 
+![Diagrama de Clases UML](recursos/diagrama-prueba.png)
 
 ## 6. Matrices de trazabilidad
 
