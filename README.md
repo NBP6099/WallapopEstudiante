@@ -727,17 +727,25 @@ El sistema debe cumplir con:
 
 ## 6. Matrices de trazabilidad
 
-- Matriz de trazabilidad entre los elementos del modelo conceptual y los requisitos.
-
-|       | EntidadX   | AsociaciónX  | RestricciónX  | Entidad2 ...   | 
-|:------|:-----------|:-----------|:-----------|:-----------|
-| RI-1  | X          | X          | X          | X          |
-| RI-2  |            | X          |            | X          |
-| RF-1  |            | X          |            | X          |
-| RF-2  | X          |            | X          | X          |
-| RN-1  |            | X          |            |            |
-| RN-2  | X          | X          | X          |            |
-| ...   |            |            |            |            |
+|       | Usuario | Anuncio | Categoría | Foto | Mensaje | Transacción | Valoración | Reporte | RN: Confirmación bilateral | RN: Reportes auto-inactivan | RN: Límites caracteres | RN: Solo verificados | RN: Moderación / Admin |
+| ----- | ------- | ------- | --------- | ---- | ------- | ----------- | ---------- | ------- | -------------------------- | --------------------------- | ---------------------- | -------------------- | ---------------------- |
+| RI-01 | X       |         |           |      |         |             | X          |         |                            |                             |                        | X                    |                        |
+| RI-02 |         | X       | X         | X    |         |             |            |         |                            | X             | X                      | X                    |                        |
+| RI-03 |         | X       |           | X    |         |             |            |         |                            |                             |                        |                      |                        |
+| RI-04 |         |         | X         |      |         |             |            |         |                            |                             |                        | X                    | X                      |
+| RI-05 | X       |         |           |      | X       |             |            |         |                            |                             |                        | X                    |                        |
+| RI-06 | X       | X       |           |      |         |             | X          |         |                            |                             |                        | X                    |                        |
+| RI-07 |         |         |           |      |         | X           |            |         | X                          |                             |                        |                      |                        |
+| RI-08 | X       | X       |           |      |         |             |            | X       |                            | X                           |                        |                      | X                      |
+| RN-01 | X       |         |           |      |         |             |            |         |                            |                             |                        | X                    | X                      |
+| RN-02 |         | X       |           |      |         |             |            |         |                            |                             |                        | X                    |                        |
+| RN-03 |         | X       |           |      |         |             |            |         |                            |                             | X                      |                      |                        |
+| RN-04 |         | X       |           |      |         |             |            |         |                            |                             | X                      |                      |                        |
+| RN-05 |         | X       |           |      |         |             |            |         |                            | X                           |                        |                      |                        |
+| RN-06 |         |         |           | X    |         |             |            |         |                            |                             |                        | X                    |                        |
+| RN-07 | X       |         |           |      |         | X           | X          |         | X                          |                             |                        |                      |                        |
+| RN-08 |         | X       |           |      |         |             |            | X       |                            | X                           |                        |                      | X                      |
+| RN-09 |         |         |           |      |         |             |            |         |                            |                             |                        |                      | X                      |
 
 -- fin entregable 2 --
 
