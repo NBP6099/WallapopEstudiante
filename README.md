@@ -62,6 +62,11 @@
 - [5. Modelo conceptual](#5-modelo-conceptual)
   - [5.1. Diagramas de clases UML](#51-diagramas-de-clases-uml)
   - [5.2. Escenarios de prueba](#52-escenarios-de-prueba)
+    - [Escenario 1: Publicación y venta de un artículo](#escenario-1-publicación-y-venta-de-un-artículo)
+    - [Escenario 2: Reporte y moderación de anuncio](#escenario-2-reporte-y-moderación-de-anuncio)
+    - [Escenario 3: Búsqueda avanzada y favoritos](#escenario-3-búsqueda-avanzada-y-favoritos)
+    - [Escenario 4: Modificación o eliminación de anuncio propio](#escenario-4-modificación-o-eliminación-de-anuncio-propio)
+    - [Escenario 5: Caducidad automática del anuncio (90 días sin actividad)](#escenario-5-caducidad-automática-del-anuncio-90-días-sin-actividad)
 - [6. Matrices de trazabilidad](#6-matrices-de-trazabilidad)
 - [7. Modelo relacional en 3FN](#7-modelo-relacional-en-3fn)
   - [7.1. Transformación de jerarquías](#71-transformación-de-jerarquías)
@@ -808,6 +813,8 @@ A continuación se describen escenarios representativos del funcionamiento de sh
   - No se permite precio > 500€ salvo aprobación administrativa.
   - La transacción no puede ser “completada” sin confirmación bilateral.
 
+### ![Diagrama Escenario 1](recursos/Escenario1.svg)
+
 #### Escenario 2: Reporte y moderación de anuncio
 #### Precondiciones:
 - Usuario reportante autenticado.
@@ -828,6 +835,7 @@ A continuación se describen escenarios representativos del funcionamiento de sh
 - Anuncios con 3 o más reportes de diferentes usuarios se desactivan automáticamente hasta revisión.
 - La revisión debe registrarse en ≤ 72 horas.
 
+### ![Diagrama Escenario 2](recursos/Escenario2.svg)
 
 #### Escenario 3: Búsqueda avanzada y favoritos
 #### Precondiciones:
@@ -848,6 +856,7 @@ A continuación se describen escenarios representativos del funcionamiento de sh
 - Los anuncios en “borrador, vendido, inactivo o eliminado” no aparecen en listados públicos.
 - Favoritos se sincroniza automáticamente cuando cambia el estado del anuncio.
 
+### ![Diagrama Escenario 3](recursos/Escenario3.svg)
 
 #### Escenario 4: Modificación o eliminación de anuncio propio
 #### Precondiciones:
@@ -869,6 +878,7 @@ A continuación se describen escenarios representativos del funcionamiento de sh
 - Los cambios respetan límites de caracteres y precio máximo.
 - La eliminación requiere confirmación y oculta el anuncio de listados y favoritos.
 
+### ![Diagrama Escenario 4](recursos/Escenario4.svg)
 
 #### Escenario 5: Caducidad automática del anuncio (90 días sin actividad)
 #### Precondiciones:
@@ -887,6 +897,8 @@ A continuación se describen escenarios representativos del funcionamiento de sh
 - Existe registro de la notificación previa (T+83).
 - El cambio a “inactivo” sucede exactamente al alcanzar T+90 sin actividad.
 - Reactivar exige acción explícita del propietario.
+
+### ![Diagrama Escenario 5](recursos/Escenario5.svg)
 
 ## 6. Matrices de trazabilidad
 
