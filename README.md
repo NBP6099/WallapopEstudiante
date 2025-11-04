@@ -1,5 +1,5 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/7wG06BM4)
-# Título Proyecto
+# SHAREUS
 
 ## Miembros del grupo L7-5 
 
@@ -719,11 +719,10 @@ El sistema debe cumplir con:
 ## 5. Modelo conceptual
 
 ### 5.1. Diagramas de clases UML
-
-- con restricciones.
+![Diagrama de Clases UML](recursos/diagrama.png)
 
 ### 5.2. Escenarios de prueba 
-![Diagrama de Clases UML](recursos/diagrama-prueba.png)
+
 
 ## 6. Matrices de trazabilidad
 
