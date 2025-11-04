@@ -47,7 +47,7 @@ comunidades universitarias españolas, facilitando:
 
 
 
-![alt text](<Imagen de WhatsApp 2025-10-16 a las 12.45.42_6c8c809e.jpg>)
+![alt text](<recursos/Imagen de WhatsApp 2025-10-16 a las 12.45.42_6c8c809e.jpg>)
 
 ## 2. Glosario de términos
 
