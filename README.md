@@ -724,6 +724,12 @@ El sistema debe cumplir con:
 ### 5.2. Escenarios de prueba 
 <img src="recursos/Diagrama2.svg" width="2400">
 
+![Diagrama de Clases UML](recursos/Diagrama4.svg)
+
+<img src="recursos/Diagrama4.svg" width="3400">
+
+
+
 
 ## 6. Matrices de trazabilidad
 
