@@ -719,7 +719,7 @@ El sistema debe cumplir con:
 ## 5. Modelo conceptual
 
 ### 5.1. Diagramas de clases UML
-![Diagrama de Clases UML](recursos/diagrama.png)
+<img src="recursos/diagrama2.png" width="1400" alt="Diagrama de Clases UML" />
 
 ### 5.2. Escenarios de prueba 
 
