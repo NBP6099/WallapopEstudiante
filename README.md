@@ -6,6 +6,68 @@
 1. Ramos Torres, Alberto
 1. López-Cano Liviano, Gonzalo
 
+## Índice
+### Índice
+
+- [Título Proyecto](#título-proyecto)
+- [Miembros del grupo L7-5](#miembros-del-grupo-l7-5)
+- [1. Introducción al problema](#1-introducción-al-problema)
+- [2. Glosario de términos](#2-glosario-de-términos)
+- [3. Visión general del sistema](#3-visión-general-del-sistema)
+  - [3.1. Requisitos generales](#31-requisitos-generales)
+  - [3.2. Usuarios del sistema](#32-usuarios-del-sistema)
+- [4. Catálogo de requisitos](#4-catálogo-de-requisitos)
+  - [4.1 Requisitos funcionales](#41-requisitos-funcionales)
+    - [R.F.01. Publicar anuncio](#rf01-publicar-anuncio)
+    - [R.F.02. Buscar productos con filtros](#rf02-buscar-productos-con-filtros)
+    - [R.F.03. Contactar con vendedor](#rf03-contactar-con-vendedor)
+    - [R.F.04. Guardar anuncios en favoritos](#rf04-guardar-anuncios-en-favoritos)
+    - [R.F.05. Valorar transacción](#rf05-valorar-transacción)
+    - [R.F.06. Modificar o eliminar anuncio propio](#rf06-modificar-o-eliminar-anuncio-propio)
+    - [R.F.07. Reportar anuncio o usuario](#rf07-reportar-anuncio-o-usuario)
+    - [R.F.08. Consultar listado de anuncios activos](#rf08-consultar-listado-de-anuncios-activos)
+    - [R.F.09. Consultar historial de transacciones](#rf09-consultar-historial-de-transacciones)
+    - [R.F.10. Administrar categorías](#rf10-administrar-categorías)
+  - [4.1.1. Requisitos de información](#411-requisitos-de-información)
+    - [R.I.01. Información de usuario](#ri01-información-de-usuario)
+    - [R.I.02. Información de anuncio](#ri02-información-de-anuncio)
+    - [R.I.03. Información de fotografías de anuncios](#ri03-información-de-fotografías-de-anuncios)
+    - [R.I.04. Información de categorías](#ri04-información-de-categorías)
+    - [R.I.05. Información de mensajes](#ri05-información-de-mensajes)
+    - [R.I.06. Información de valoraciones](#ri06-información-de-valoraciones)
+    - [R.I.07. Información de transacciones](#ri07-información-de-transacciones)
+    - [R.I.08. Información de reportes](#ri08-información-de-reportes)
+  - [4.1.2. Reglas de negocio](#412-reglas-de-negocio)
+    - [R.N.01. Verificación mediante correo institucional](#rn01-verificación-mediante-correo-institucional)
+    - [R.N.02. Acceso exclusivo a usuarios autenticados](#rn02-acceso-exclusivo-a-usuarios-autenticados)
+    - [R.N.03. Visibilidad de anuncios](#rn03-visibilidad-de-anuncios)
+    - [R.N.04. Límites de caracteres](#rn04-límites-de-caracteres)
+    - [R.N.05. Caducidad automática de anuncios](#rn05-caducidad-automática-de-anuncios)
+    - [R.N.06. Fotografía obligatoria](#rn06-fotografía-obligatoria)
+    - [R.N.07. Confirmación bilateral de transacciones](#rn07-confirmación-bilateral-de-transacciones)
+    - [R.N.08. Gestión administrativa de reportes](#rn08-gestión-administrativa-de-reportes)
+    - [R.N.09. Permisos exclusivos de administración](#rn09-permisos-exclusivos-de-administración)
+    - [R.N.10. Protección de datos personales](#rn10-protección-de-datos-personales)
+    - [R.N.11. Productos prohibidos](#rn11-productos-prohibidos)
+  - [4.2. Mapa de historias de usuario (opcional)](#42-mapa-de-historias-de-usuario-opcional)
+  - [4.3. Requisitos no funcionales (opcional)](#43-requisitos-no-funcionales-opcional)
+    - [R.N.F. 01. Rendimiento](#rnf-01-rendimiento)
+    - [R.N.F. 02. Disponibilidad](#rnf-02-disponibilidad)
+    - [R.N.F. 03. Seguridad](#rnf-03-seguridad)
+    - [R.N.F. 04. Usabilidad](#rnf-04-usabilidad)
+    - [R.N.F. 05. Compatibilidad](#rnf-05-compatibilidad)
+    - [R.N.F. 06. Escalabilidad](#rnf-06-escalabilidad)
+    - [R.N.F. 07. Mantenibilidad](#rnf-07-mantenibilidad)
+    - [R.N.F. 08. Cumplimiento normativo](#rnf-08-cumplimiento-normativo)
+- [5. Modelo conceptual](#5-modelo-conceptual)
+  - [5.1. Diagramas de clases UML](#51-diagramas-de-clases-uml)
+  - [5.2. Escenarios de prueba](#52-escenarios-de-prueba)
+- [6. Matrices de trazabilidad](#6-matrices-de-trazabilidad)
+- [7. Modelo relacional en 3FN](#7-modelo-relacional-en-3fn)
+  - [7.1. Transformación de jerarquías](#71-transformación-de-jerarquías)
+- [8. Matriz de trazabilidad MC/SQL (opcional)](#8-matriz-de-trazabilidad-mcsql-opcional)
+
+
 ## 1. Introducción al problema
 
 - En el entorno universitario español, los estudiantes enfrentan necesidades recurrentes de
@@ -722,10 +784,109 @@ El sistema debe cumplir con:
 ![Diagrama de Clases UML](recursos/Diagrama4.svg)
 (Recomendamos abrir la imagen en una nueva pestaña haciendo click derecho)
 ### 5.2. Escenarios de prueba 
+A continuación se describen escenarios representativos del funcionamiento de shareUS, incluyendo precondiciones, flujo principal, postcondiciones y reglas de negocio implicadas, junto con el diagrama de objetos UML correspondiente a cada caso.
+
+#### Escenario 1: Publicación y venta de un artículo
+  #### Precondiciones:
+  - Usuario vendedor verificado con sesión iniciada.
+  - Categorías activas disponibles.
+  - Reglas de negocios: R.N.01, R.N.03, R.N.04, R.N.06, R.N.09.
+
+  #### Desarrollo:
+  - El vendedor crea un Anuncio con título, descripción, precio o marca “intercambio”, estado del producto, categoría y sube 3 fotografías.
+  - Activa el Anuncio, que pasa a estado “activo” y queda visible en listados y búsquedas.
+  - Un comprador filtra por categoría y localiza el Anuncio; abre chat y negocia precio y punto de entrega en campus.
+  - Se registra una Transacción vinculada al Anuncio y a ambos usuarios; tras la entrega, comprador y vendedor confirman la transacción.
+  - Cada parte emite una Valoración del otro usuario asociada al Anuncio/Transacción.
+
+  #### Postcondiciones:
+  - Anuncio pasa a estado “vendido”.
+  - Se incrementa el total de transacciones de cada usuario y se actualiza la valoración media del usuario valorado.
+
+  #### Criterios de aceptación:
+  - No se publican anuncios sin al menos una fotografía ni con título/descripción fuera de rangos.
+  - No se permite precio > 500€ salvo aprobación administrativa.
+  - La transacción no puede ser “completada” sin confirmación bilateral.
+
+#### Escenario 2: Reporte y moderación de anuncio
+#### Precondiciones:
+- Usuario reportante autenticado.
+- Anuncio visible y activo.
+- Reglas de negocio: R.N.03, R.N.08, R.N.10, R.N.11.
+
+#### Desarrollo:
+- Un usuario detecta contenido prohibido en un Anuncio y lo reporta indicando motivo “producto prohibido”.
+- El sistema crea un Reporte y notifica a un Administrador.
+- El Administrador revisa el caso; si se confirma la infracción o se supera el umbral de reportes, desactiva el Anuncio y aplica la acción correspondiente (advertencia, suspensión o expulsión).
+
+#### Postcondiciones:
+- El Anuncio queda “inactivo” o “eliminado” según gravedad.
+- El Reporte pasa a “resuelto” con acción tomada y fecha de resolución.
+
+#### Criterios de aceptación:
+- Un mismo usuario no puede reportar más de 3 veces el mismo anuncio.
+- Anuncios con 3 o más reportes de diferentes usuarios se desactivan automáticamente hasta revisión.
+- La revisión debe registrarse en ≤ 72 horas.
 
 
+#### Escenario 3: Búsqueda avanzada y favoritos
+#### Precondiciones:
+- Usuario autenticado.
+- Existen Anuncios activos con distintas categorías, facultades, cursos y estados.
+- Reglas de negocio: R.N.02, R.N.03, R.N.04.
+
+#### Desarrollo:
+- El usuario aplica filtros combinados por categoría, curso y rango de precio, y ordena por “más recientes”.
+- Abre el detalle de un Anuncio y lo guarda en “favoritos”.
+- Posteriormente, el propietario marca ese Anuncio como “vendido” y desaparece automáticamente de favoritos.
+
+#### Postcondiciones:
+- La lista de favoritos del usuario solo contiene anuncios en estado “activo”.
+
+#### Criterios de aceptación:
+- La búsqueda admite palabras clave en título y descripción y filtros combinados.
+- Los anuncios en “borrador, vendido, inactivo o eliminado” no aparecen en listados públicos.
+- Favoritos se sincroniza automáticamente cuando cambia el estado del anuncio.
 
 
+#### Escenario 4: Modificación o eliminación de anuncio propio
+#### Precondiciones:
+- Usuario vendedor autenticado y propietario del anuncio.
+- El anuncio está en estado “activo” o “borrador”.
+- Reglas de negocio: R.F.06, R.N.03, R.N.04, R.N.05, R.N.07.
+
+#### Desarrollo:
+- El vendedor edita título, descripción y/o precio dentro de límites permitidos; el sistema actualiza la fecha de última modificación y registra el cambio.
+- Alternativamente, el vendedor solicita eliminar el anuncio; el sistema pide confirmación y lo marca como “eliminado”.
+- Los anuncios eliminados desaparecen de búsquedas y se retiran de los favoritos de otros usuarios.
+
+#### Postcondiciones:
+- Si se modifica, el anuncio continúa “activo” con fecha de última modificación actualizada.
+- Si se elimina, el anuncio deja de ser visible en búsquedas y favoritos.
+
+#### Criterios de aceptación:
+- Solo el propietario puede editar o eliminar.
+- Los cambios respetan límites de caracteres y precio máximo.
+- La eliminación requiere confirmación y oculta el anuncio de listados y favoritos.
+
+
+#### Escenario 5: Caducidad automática del anuncio (90 días sin actividad)
+#### Precondiciones:
+- Anuncio publicado en estado “activo” sin modificaciones durante 90 días.
+- Reglas de negocio: R.N.05, R.N.03, R.N.07.
+
+#### Desarrollo:
+- Siete días antes de alcanzar 90 días de inactividad, el sistema notifica al propietario para renovar.
+- Si no hay edición/renovación, al llegar a los 90 días el sistema cambia el estado del anuncio a “inactivo”.
+- El anuncio deja de ser visible en buscadores y listados públicos.
+
+#### Postcondiciones:
+- El anuncio queda “inactivo” y no es visible públicamente; el propietario puede reactivarlo renovando o editando.
+
+#### Criterios de aceptación:
+- Existe registro de la notificación previa (T+83).
+- El cambio a “inactivo” sucede exactamente al alcanzar T+90 sin actividad.
+- Reactivar exige acción explícita del propietario.
 
 ## 6. Matrices de trazabilidad
 
