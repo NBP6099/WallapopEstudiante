@@ -791,114 +791,184 @@ El sistema debe cumplir con:
 ### 5.2. Escenarios de prueba 
 A continuación se describen escenarios representativos del funcionamiento de shareUS, incluyendo precondiciones, flujo principal, postcondiciones y reglas de negocio implicadas, junto con el diagrama de objetos UML correspondiente a cada caso.
 
-#### Escenario 1: Publicación y venta de un artículo
-  #### Precondiciones:
-  - Usuario vendedor verificado con sesión iniciada.
-  - Categorías activas disponibles.
-  - Reglas de negocios: R.N.01, R.N.03, R.N.04, R.N.06, R.N.09.
+#### Escenario 1: Publicación y venta de un libro de texto entre compañeros
 
-  #### Desarrollo:
-  - El vendedor crea un Anuncio con título, descripción, precio o marca “intercambio”, estado del producto, categoría y sube 3 fotografías.
-  - Activa el Anuncio, que pasa a estado “activo” y queda visible en listados y búsquedas.
-  - Un comprador filtra por categoría y localiza el Anuncio; abre chat y negocia precio y punto de entrega en campus.
-  - Se registra una Transacción vinculada al Anuncio y a ambos usuarios; tras la entrega, comprador y vendedor confirman la transacción.
-  - Cada parte emite una Valoración del otro usuario asociada al Anuncio/Transacción.
+#### Precondiciones:
+- **Alberto Ramos Torres** (Ingeniería Informática, 3º Grado) tiene cuenta verificada y activa desde hace 3 meses.
+- **María García López** (Ciencias, 2º Grado) tiene cuenta verificada y activa desde hace 2 meses.
+- La categoría "Libros y Apuntes" está disponible y activa.
+- Reglas de negocio: R.N.01, R.N.03, R.N.04, R.N.06, R.N.07.
 
-  #### Postcondiciones:
-  - Anuncio pasa a estado “vendido”.
-  - Se incrementa el total de transacciones de cada usuario y se actualiza la valoración media del usuario valorado.
+#### Desarrollo:
+- Alberto crea un Anuncio: Título "Fundamentos de Programación - 3ª Edición Official", descripción "Libro de la asignatura usada en 2º año, todas las páginas intactas, con apuntes manuscritos en márgenes. Incluye marcapáginas", precio 25,00€, estado "Como nuevo", categoría "Libros y Apuntes", ubicación "Facultad de Ingeniería - Planta Baja", sube 3 fotografías (2025-12-14 18:20:00 estado "borrador").
+- Alberto activa el Anuncio: estado cambia a "activo", fechaPublicacion = 2025-12-14 18:30:00, aparece en búsquedas y listados.
+- María realiza búsqueda avanzada: Categoría "Libros y Apuntes", Facultad "Ingeniería Informática", Rango 15€-40€, palabra clave "Fundamentos Programación", encuentra anuncio en posición 1 (2025-12-14 18:45:00).
+- María inicia chat: Presiona "Contactar", crea Transaccion(estado="en negociacion"), negocia precio → acuerdan 24€, deciden entrega mañana a las 4pm en biblioteca.
+- Transacción se completa (2025-12-15 16:00:00): Intercambian libro por dinero, Alberto marca "Confirmar vendedor", María marca "Confirmar comprador" → Transaccion.estado = "completada", Anuncio.estado = "vendido", fechaFinalizacion = 2025-12-15 16:05:00.
+- Valoraciones mutuas: María valora a Alberto (5 estrellas, "Vendedor muy responsable"), Alberto valora a María (5 estrellas, "Compradora puntual"). TRIGGER tActualizarValoracionMedia: Alberto.valoracionMedia = 5.00, numeroTransaccionesCompletadas = 1. María.valoracionMedia = 5.00, numeroTransaccionesCompletadas = 1.
 
-  #### Criterios de aceptación:
-  - No se publican anuncios sin al menos una fotografía ni con título/descripción fuera de rangos.
-  - No se permite precio > 500€ salvo aprobación administrativa.
-  - La transacción no puede ser “completada” sin confirmación bilateral.
+#### Postcondiciones:
+- Anuncio.estado = "vendido".
+- Transaccion.estado = "completada" con fechaFinalizacion = 2025-12-15 16:05:00.
+- 2 Valoraciones registradas y visibles en perfiles públicos.
+- Anuncio desaparece de búsquedas y listados (solo "activo" aparece).
+- Usuarios con favorito: registro eliminado automáticamente (FK ON DELETE CASCADE).
+
+#### Criterios de aceptación:
+- Título 47 caracteres ✓ (rango 10-100). Descripción 178 caracteres ✓ (rango 20-1000).
+- Precio 24€ ✓ (< 500€). Fotos 3 ✓ (mín 1, máx 5).
+- Transacción completada solo con confirmación bilateral ✓.
+- Valoraciones solo tras completarse ✓.
 
 ### ![Diagrama Escenario 1](recursos/Escenario1.svg)
 
-#### Escenario 2: Reporte y moderación de anuncio
+---
+
+#### Escenario 2: Reporte de anuncio fraudulento y moderación administrativa
+
 #### Precondiciones:
-- Usuario reportante autenticado.
-- Anuncio visible y activo.
-- Reglas de negocio: R.N.03, R.N.08, R.N.10, R.N.11.
+- **Gonzalo López-Cano Liviano** (Ingeniería Informática, 3º Grado) tiene cuenta verificada, 2 transacciones completadas, valoración 4.8/5.
+- **David Álvarez** (usuario nuevo) publicó anuncio "PlayStation 5 nueva sin abrir - 350€" con 1 foto de baja calidad (2025-12-10).
+- **Juan Pérez Admin** (Administrador) tiene sesión activa.
+- Anuncio acumula 0 reportes inicialmente.
+- Reglas de negocio: R.N.02, R.N.08, R.N.09, R.N.11.
 
 #### Desarrollo:
-- Un usuario detecta contenido prohibido en un Anuncio y lo reporta indicando motivo “producto prohibido”.
-- El sistema crea un Reporte y notifica a un Administrador.
-- El Administrador revisa el caso; si se confirma la infracción o se supera el umbral de reportes, desactiva el Anuncio y aplica la acción correspondiente (advertencia, suspensión o expulsión).
+- Gonzalo detecta fraude (2025-12-14 19:00:00): Abre anuncio "PlayStation 5", observa foto de baja calidad con marca de agua, precio irreal (350€ vs 499€ mercado), ubicación genérica, presiona "Reportar".
+- Gonzalo reporta (2025-12-14 19:05:00): tipoReporte = "anuncio fraudulento", descripcionMotivo = "Foto sacada de internet con marca de agua. Precio irreal. Posible estafa". Sistema registra Reportes(reporteId=1, usuarioReportadorId=2, estado="pendiente", fechaReporte=2025-12-14 19:05:00). Notificación a Juan.
+- Segundo reporte (2025-12-14 20:15:00): Carlos reporta "Contacté con David, pidió transferencia por adelantado. No quiso videollamada". Reportes(reporteId=2, estado="pendiente"). Contador: 2 reportes únicos.
+- Tercer reporte (2025-12-14 21:30:00): Paula reporta "Claros indicios de fraude". Reportes(reporteId=3, estado="pendiente"). TRIGGER tDesactivarAnuncioReportado: COUNT(DISTINCT usuarioReportadorId) = 3 → Anuncio.estado = "inactivo". Anuncio desaparece de búsquedas.
+- Juan (Admin) accede a moderación (2025-12-15 10:00:00): Ve 3 reportes pendientes, lee motivos, revisa perfil David (fecha_registro = 2025-12-10, 0 transacciones, 0 valoraciones), verifica foto (imagen Google Images), espera respuesta 24h.
+- David NO responde (2025-12-15 11:30:00): Plazo vence.
+- Juan ejecuta acción (2025-12-15 11:35:00): Marca 3 reportes estado = "resuelto", administradorGestionId = 1, fechaResolucion = 2025-12-15 11:35:00, accionTomada = "expulsion". Usuarios.David.estadoCuenta = "eliminada". Anuncio.estado = "eliminado". CategoriasFavoritas se eliminan (FK ON DELETE CASCADE).
 
 #### Postcondiciones:
-- El Anuncio queda “inactivo” o “eliminado” según gravedad.
-- El Reporte pasa a “resuelto” con acción tomada y fecha de resolución.
+- Anuncio.estado = "eliminado".
+- Usuario David.estadoCuenta = "eliminada" (permanente).
+- 3 Reportes.estado = "resuelto" con accionTomada = "expulsion".
+- Usuarios reportadores reciben notificación: "Tu reporte ha sido procesado".
+- Anuncio desaparece de favoritos automáticamente.
 
 #### Criterios de aceptación:
-- Un mismo usuario no puede reportar más de 3 veces el mismo anuncio.
-- Anuncios con 3 o más reportes de diferentes usuarios se desactivan automáticamente hasta revisión.
-- La revisión debe registrarse en ≤ 72 horas.
+- Un usuario no puede reportar > 3 veces mismo anuncio ✓.
+- 3+ reportes de diferentes usuarios → desactivación automática ✓.
+- Revisión administrativa en < 72 horas (16 horas realizado) ✓.
+- Acción registrada con admin, fecha resolución y motivo ✓.
+- Solo admin puede ejecutar expulsion ✓.
 
 ### ![Diagrama Escenario 2](recursos/Escenario2.svg)
 
-#### Escenario 3: Búsqueda avanzada y favoritos
+---
+
+#### Escenario 3: Búsqueda avanzada y guardado de anuncios en favoritos
+
 #### Precondiciones:
-- Usuario autenticado.
-- Existen Anuncios activos con distintas categorías, facultades, cursos y estados.
-- Reglas de negocio: R.N.02, R.N.03, R.N.04.
+- **Sofía Martínez Ruiz** (Humanidades, 1º Grado) tiene cuenta verificada y activa, presupuesto limitado < 40€.
+- **Alberto Ramos Torres** y **Gonzalo López-Cano Liviano** tienen anuncios activos.
+- Hay 15 anuncios activos, 3 inactivos/eliminados en plataforma.
+- Plataforma responde en < 3 segundos.
+- Reglas de negocio: R.N.02, R.N.03, R.N.F.01.
 
 #### Desarrollo:
-- El usuario aplica filtros combinados por categoría, curso y rango de precio, y ordena por “más recientes”.
-- Abre el detalle de un Anuncio y lo guarda en “favoritos”.
-- Posteriormente, el propietario marca ese Anuncio como “vendido” y desaparece automáticamente de favoritos.
+- Sofía accede a búsqueda avanzada (2025-12-14 15:00:00): Navbar → "Buscar anuncios", abre panel de filtros.
+- Sofía establece criterios: Categoría "Muebles y Hogar", Facultad "Ingeniería Informática", Rango 5€-40€, Estado "Nuevo" OR "Como nuevo", Palabra clave "lampara", Curso "3º Grado", presiona "Buscar" (2025-12-14 15:02:00).
+- Sistema procesa (< 2 segundos): Resultado 1 anuncio encontrado: "Lámpara LED de escritorio" (Alberto), 15€, "Como nuevo", Residencia Universitaria. Anuncios inactivos NO aparecen. Tiempo respuesta 1.8s ✓.
+- Sofía abre ficha (2025-12-14 15:08:00): Ve imagen, descripción "Lámpara con luz ajustable, perfecta para estudiar. Está en buen estado", precio 15€, perfil Alberto 3º Grado sin valoraciones, ubicación, numeroVisualizaciones incrementa a 1.
+- Sofía guarda en favoritos (2025-12-14 15:10:00): Presiona "❤️ Añadir a favoritos". Sistema registra CategoriasFavoritas(usuarioId=5, anuncioId=2, fechaGuardado=2025-12-14 15:10:00). Botón cambia a "En favoritos".
+- Sofía continúa buscando (2025-12-14 15:15:00): Modifica filtros → Categoría "Electrónica", Rango 5€-15€. Resultados 2 anuncios: Cable HDMI 2m (Gonzalo) 8,50€, Adaptador USB 12€.
+- Sofía guarda Cable HDMI (2025-12-14 15:18:00): CategoriasFavoritas(usuarioId=5, anuncioId=3, fechaGuardado=2025-12-14 15:18:00).
+- Sofía accede a "Mis favoritos" (2025-12-14 16:00:00): Ve 2 anuncios: 1. "Lámpara LED" 15€ (hace 50 min), 2. "Cable HDMI" 8,50€ (hace 42 min). Total: 23,50€ ✓ (dentro presupuesto 40€).
+- Una semana después (2025-12-21 14:30:00): Alberto vende lámpara. Anuncio.estado "activo" → "vendido". TRIGGER: Busca CategoriasFavoritas anuncioId=2, encuentra 1 registro (Sofía), elimina por FK ON DELETE CASCADE. Sofía recibe notificación: "Un anuncio guardado ya no está disponible". Sofía ahora solo tiene Cable en favoritos.
 
 #### Postcondiciones:
-- La lista de favoritos del usuario solo contiene anuncios en estado “activo”.
+- Sofía tiene 1 favorito activo (Cable HDMI).
+- Búsqueda procesada < 3 segundos ✓.
+- Anuncios inactivos nunca aparecieron ✓.
+- Lámpara se eliminó automáticamente de favoritos al venderse ✓.
 
 #### Criterios de aceptación:
-- La búsqueda admite palabras clave en título y descripción y filtros combinados.
-- Los anuncios en “borrador, vendido, inactivo o eliminado” no aparecen en listados públicos.
-- Favoritos se sincroniza automáticamente cuando cambia el estado del anuncio.
+- Solo usuario autenticado accede ✓. Solo anuncios "activo" en búsqueda ✓.
+- Búsqueda por palabra clave en título/descripción ✓. Respuesta < 3 segundos ✓.
+- Favorito se elimina automáticamente cuando anuncio cambia estado ✓.
 
 ### ![Diagrama Escenario 3](recursos/Escenario3.svg)
 
-#### Escenario 4: Modificación o eliminación de anuncio propio
+---
+
+#### Escenario 4: Modificación y eliminación de anuncio propio con confirmación
+
 #### Precondiciones:
-- Usuario vendedor autenticado y propietario del anuncio.
-- El anuncio está en estado “activo” o “borrador”.
-- Reglas de negocio: R.F.06, R.N.03, R.N.04, R.N.05, R.N.07.
+- **Gonzalo López-Cano Liviano** tiene anuncio "Sudadera deportiva Talla M" en estado "activo" desde 2025-12-12 14:30:00.
+- Anuncio: Precio 20€, 1 foto, descripción 45 caracteres.
+- 2 usuarios lo tienen en favoritos.
+- Existe 1 Transaccion en estado "en negociacion" (usuario Carlos).
+- Reglas de negocio: R.N.04, R.N.05, R.N.06, R.N.07, R.N.09.
 
 #### Desarrollo:
-- El vendedor edita título, descripción y/o precio dentro de límites permitidos; el sistema actualiza la fecha de última modificación y registra el cambio.
-- Alternativamente, el vendedor solicita eliminar el anuncio; el sistema pide confirmación y lo marca como “eliminado”.
-- Los anuncios eliminados desaparecen de búsquedas y se retiran de los favoritos de otros usuarios.
+- Gonzalo accede a perfil (2025-12-15 10:00:00): Navbar → "Mis anuncios", ve "Sudadera deportiva" (estado "activo"), presiona "Editar".
+- Abre formulario (2025-12-15 10:05:00): Modifica Precio 20€ → 18€, Descripción agrega "URGENTE: cambio de talla" (ahora 77 caracteres), sube 1 foto adicional (total 2 fotos), presiona "Guardar cambios".
+- TRIGGER tValidarLimitesAnuncio: Descripción 77 caracteres ✓ (rango 20-1000). Precio 18€ ✓ (> 0 y < 500). Título mantiene validez. Todas validaciones pasan ✓.
+- Anuncio se actualiza (2025-12-15 10:10:00): estado sigue "activo", precio = 18€, descripcion actualizada, fechaUltimaModificacion = 2025-12-15 10:10:00. Cambios visibles inmediatamente. 2 usuarios con favorito reciben notificación: "Un anuncio guardado se actualizó". Carlos en chat: "Vi que bajaste a 18€! ¡Me interesa!". Gonzalo: "Sí, necesito cambiar de talla. ¿Mañana a las 5pm?".
+- Semana después (2025-12-22): Sudadera vendida (estado "vendido") desde ayer. Otro anuncio "Chaqueta invierno" sin modificar 5 días. Sistema: "⚠️ Tu anuncio expirará en 2 días (90 días sin actualización)".
+- Gonzalo elimina anuncio (2025-12-23 14:00:00): Accede "Mis anuncios", ve "Sudadera" (estado "vendido"), presiona "Eliminar anuncio".
+- Modal confirmación: "¿Estás seguro de eliminar? Esta acción no se puede deshacer". Botones "Cancelar" | "Eliminar definitivamente". Presiona "Eliminar definitivamente".
+- Sistema procesa (2025-12-23 14:05:00): Anuncio.estado = "eliminado". TRIGGER: Busca CategoriasFavoritas donde anuncioId=sudadera, encuentra 2 usuarios, elimina por FK ON DELETE CASCADE. Esos 2 usuarios reciben: "Un anuncio guardado fue eliminado por vendedor". Historial se mantiene: Transaccion, Mensajes, Valoraciones siguen.
+- Verificación post-eliminación (2025-12-23 14:10:00): Anuncio.estado = "eliminado". CategoriasFavoritas 2 registros eliminados. Fotografias se mantienen en BD pero no mostradas públicamente. Transaccion completada sigue en historial. Valoraciones siguen públicamente. fechaUltimaModificacion registrada 2025-12-15 10:10:00.
 
 #### Postcondiciones:
-- Si se modifica, el anuncio continúa “activo” con fecha de última modificación actualizada.
-- Si se elimina, el anuncio deja de ser visible en búsquedas y favoritos.
+- Anuncio.estado = "eliminado".
+- Anuncio desaparece de búsquedas, listados y favoritos.
+- Transacciones y valoraciones se conservan.
+- Trazabilidad de cambios registrada (fechaUltimaModificacion).
+- Admin puede ver historial completo de modificaciones.
 
 #### Criterios de aceptación:
-- Solo el propietario puede editar o eliminar.
-- Los cambios respetan límites de caracteres y precio máximo.
-- La eliminación requiere confirmación y oculta el anuncio de listados y favoritos.
+- Límites de caracteres validados ✓. Sistema avisa caducidad 90 días ✓.
+- Se permite actualizar fotos (1-5) ✓. Trazabilidad registrada ✓.
+- Historial visible para admin ✓. Confirmación modal antes de eliminar ✓.
 
 ### ![Diagrama Escenario 4](recursos/Escenario4.svg)
 
-#### Escenario 5: Caducidad automática del anuncio (90 días sin actividad)
+---
+
+#### Escenario 5: Caducidad automática de anuncio tras 90 días sin actualización
+
 #### Precondiciones:
-- Anuncio publicado en estado “activo” sin modificaciones durante 90 días.
-- Reglas de negocio: R.N.05, R.N.03, R.N.07.
+- **Alberto Ramos Torres** publicó "Mochila de 40L para excursiones" el 2025-09-10 14:30:00.
+- Anuncio.estado = "activo", Precio 35€, 1 foto, descripción correcta.
+- fechaUltimaModificacion = 2025-09-10 14:30:00 (nunca modificado).
+- Hoy: 2025-12-14 (95 días sin actividad).
+- 3 usuarios lo tienen en favoritos.
+- Existe 1 Transaccion estado "en negociacion" (usuario Pedro).
+- Reglas de negocio: R.N.05.
 
 #### Desarrollo:
-- Siete días antes de alcanzar 90 días de inactividad, el sistema notifica al propietario para renovar.
-- Si no hay edición/renovación, al llegar a los 90 días el sistema cambia el estado del anuncio a “inactivo”.
-- El anuncio deja de ser visible en buscadores y listados públicos.
+- Sistema detecta inactividad (2025-12-14 02:00:00): Cron job ejecuta SELECT * FROM Anuncios WHERE estado='activo' AND DATEDIFF(NOW(), fechaUltimaModificacion) >= 90. Encuentra "Mochila" Alberto (95 días sin modificación). Busca transacciones activas: encuentra 1 (Pedro "en negociacion").
+- Notificación previa (2025-12-14 02:05:00): Email aramos@alum.us.es Asunto: "⚠️ Tu anuncio 'Mochila de 40L' expirará en 7 días". Contenido: "Has estado 88 días sin actualizar. Si no lo haces en 7 días pasará a INACTIVO". Notificación in-app: Banner amarillo. Opciones: Editar, Actualizar foto, Cambiar precio.
+- Alberto NO renueva (2025-12-15 a 2025-12-20): Offline, no recibe notificación. Anuncio sigue "activo". Pedro sigue esperando respuesta en chat.
+- Fecha límite 90 días (2025-12-21 02:00:00): Cron job identifica "Mochila" DATEDIFF = 90 días exactos. TRIGGER ejecuta: UPDATE Anuncios SET estadoAnuncio = 'inactivo', fechaUltimaModificacion = NOW() WHERE anuncioId = X AND estado = 'activo' AND DATEDIFF >= 90.
+- TRIGGER se ejecuta (2025-12-21 02:05:00): Anuncio.estado "activo" → "inactivo". fechaUltimaModificacion = 2025-12-21 02:05:00. Anuncio DESAPARECE de búsquedas, listados, filtros.
+- Cascada (2025-12-21 02:06:00): 3 usuarios con favorito reciben: "El anuncio 'Mochila' que guardaste ya no está disponible". Favorito persiste pero muestra estado "inactivo". Pedro en Transaccion: Recibe "Anuncio no disponible". Puede seguir chateando pero no completar transaccion.
+- Email caducidad a Alberto (2025-12-21 02:10:00): Asunto: "Tu anuncio 'Mochila de 40L' está ahora INACTIVO". Contenido detallado cómo reactivar. Link: "Reactivar anuncio". Info: "Inactivado por 90+ días sin actualización".
+- Alberto reacciona (2025-12-22 18:00:00): Lee email. Accede perfil. Ve anuncio estado "INACTIVO" (texto rojo). Presiona "Reactivar anuncio". Sistema abre formulario datos precargados. Alberto solo presiona "Guardar" sin cambios.
+- Sistema procesa reactivación (2025-12-22 18:05:00): TRIGGER tValidarLimitesAnuncio valida ✓. Anuncio.estado "inactivo" → "activo". fechaUltimaModificacion = 2025-12-22 18:05:00. Contador 90 días REINICIA CERO. Próxima caducidad 2025-03-21 02:00:00. Anuncio reaparece en búsquedas, listados.
+- Notificaciones reactivación (2025-12-22 18:10:00): 3 usuarios con favorito: "El anuncio 'Mochila' ¡vuelve a estar disponible!". Pedro en chat puede retomar: "Hola Alberto, ¿sigue disponible?". Alberto puede responder y continuar transaccion.
 
 #### Postcondiciones:
-- El anuncio queda “inactivo” y no es visible públicamente; el propietario puede reactivarlo renovando o editando.
+- Anuncio.estado anterior "inactivo" → actual "activo".
+- Contador inactividad 0 días (reiniciado).
+- Próxima caducidad 2025-03-21.
+- 3 usuarios notificados inactividad → reactivación.
+- Pedro puede continuar negociación.
+- Registro histórico mantiene ambos eventos (inactivación + reactivación).
 
 #### Criterios de aceptación:
-- Existe registro de la notificación previa (T+83).
-- El cambio a “inactivo” sucede exactamente al alcanzar T+90 sin actividad.
-- Reactivar exige acción explícita del propietario.
+- Caducidad automática 90 días ✓. Notificación previa 7 días antes ✓.
+- Reactivación manual reinicia contador ✓. Anuncios inactivos no aparecen búsquedas ✓.
+- Usuarios notificados cambios estado ✓. Historial cambios disponible admin ✓.
 
 ### ![Diagrama Escenario 5](recursos/Escenario5.svg)
+
 
 ## 6. Matrices de trazabilidad
 
