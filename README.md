@@ -929,7 +929,64 @@ A continuación se describen escenarios representativos del funcionamiento de sh
 
 ### 7.1.  Justificación de la estrategia de transformación de jerarquías
 
-- si se identificaron jerarquías en el MC.
+#### Jerarquía 1: USUARIO → {ESTUDIANTE, ADMINISTRADOR}
+
+**Características:**
+- Tipo: Parcial y disjunta {disjunta, incompleta}
+- Atributo discriminante: rolUsuario ∈ {estudiante, administrador}
+- Pocos atributos específicos (los permisos se gestionan a nivel de aplicación)
+
+**Estrategia elegida: Una única relación para toda la jerarquía**
+
+USUARIOS(!usuarioId, #correoInstitucional, nombre, contraseñaCifrada, facultad, curso, rolUsuario, estadoCuenta, valoracionMedia, fechaRegistro, fotoPerfil, descripcionPersonal)
+
+PK(usuarioId)
+AK(correoInstitucional)
+
+**Justificación:**
+- Minimiza joins en consultas frecuentes (login, búsqueda de perfil, listados)
+- El atributo rolUsuario discrimina fácilmente entre roles
+- Evita redundancia de claves primarias y complejidad innecesaria en claves foráneas desde ANUNCIO, MENSAJE, VALORACION
+- Los atributos específicos de cada rol (facultad, curso) se aplican con restricciones CHECK
+
+***
+
+#### Jerarquía 2: ANUNCIO → {ANUNCIO_VENTA, ANUNCIO_INTERCAMBIO}
+
+**Características:**
+- Tipo: Parcial y disjunta {disjunta, incompleta}
+- Atributo discriminante: esIntercambio ∈ {TRUE, FALSE}
+- El 90% de los atributos son comunes; solo difiere el precio
+
+**Estrategia elegida: Una única relación para toda la jerarquía**
+
+ANUNCIOS(!anuncioId, titulo, descripcion, precio, esIntercambio, estadoProducto, fechaPublicacion, fechaUltimaModificacion, estadoAnuncio, ubicacionEntrega, totalVisualizaciones, usuarioId, categoriaId)
+
+PK(anuncioId)
+FK(usuarioId)/USUARIOS
+FK(categoriaId)/CATEGORIAS
+
+**Justificación:**
+- Evita redundancia masiva de atributos (solo difiere precio)
+- Simplifica búsquedas generales ("anuncios activos") sin necesidad de UNION
+- Facilita la gestión de claves foráneas desde MENSAJE, TRANSACCION, VALORACION
+- Los pocos NULLs en precio (intercambios) son aceptables comparados con la complejidad evitada
+- Restricciones CHECK garantizan integridad: si esIntercambio=1 → precio IS NULL; si esIntercambio=0 → precio > 0
+
+**Restricciones de integridad:**
+
+ALTER TABLE USUARIOS ADD CONSTRAINT chk_rol_usuario 
+  CHECK (rolUsuario IN ('estudiante', 'administrador'));
+
+ALTER TABLE USUARIOS ADD CONSTRAINT chk_rol_estudiante_facultad 
+  CHECK (rolUsuario = 'administrador' OR facultad IS NOT NULL);
+
+ALTER TABLE ANUNCIOS ADD CONSTRAINT chk_precio_venta 
+  CHECK (esIntercambio = 1 OR (esIntercambio = 0 AND precio > 0));
+
+ALTER TABLE ANUNCIOS ADD CONSTRAINT chk_precio_intercambio 
+  CHECK (esIntercambio = 0 OR (esIntercambio = 1 AND precio IS NULL));
+
 
 
 ### 8. Matriz de trazabilidad MC/SQL (opcional):
