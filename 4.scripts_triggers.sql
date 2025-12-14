@@ -1,5 +1,6 @@
 -- TRIGGER 1: Desactiva anuncio con 3 o más reportes únicos
 DELIMITER //
+
 CREATE TRIGGER tDesactivarAnuncioReportado
 AFTER INSERT ON Reportes
 FOR EACH ROW
@@ -16,10 +17,12 @@ BEGIN
         END IF;
     END IF;
 END//
+
 DELIMITER ;
 
 -- TRIGGER 2: Limita a 3 reportes por usuario sobre el mismo anuncio
 DELIMITER //
+
 CREATE TRIGGER tLimiteReportesPorUsuario
 BEFORE INSERT ON Reportes
 FOR EACH ROW
@@ -36,10 +39,12 @@ BEGIN
         END IF;
     END IF;
 END//
+
 DELIMITER ;
 
 -- TRIGGER 3: Confirmación bilateral antes de completar una transacción
 DELIMITER //
+
 CREATE TRIGGER tConfirmacionBilateralTransaccion
 BEFORE UPDATE ON Transacciones
 FOR EACH ROW
@@ -55,10 +60,12 @@ BEGIN
         SET NEW.fechaFinalizacion = NOW();
     END IF;
 END//
+
 DELIMITER ;
 
 -- TRIGGER 4: Valida límites de caracteres en anuncios (título y descripción)
 DELIMITER //
+
 CREATE TRIGGER tValidarLimitesAnuncio
 BEFORE INSERT ON Anuncios
 FOR EACH ROW
@@ -76,10 +83,12 @@ BEGIN
         SET MESSAGE_TEXT = 'El precio debe ser menor a 500 euros';
     END IF;
 END//
+
 DELIMITER ;
 
 -- TRIGGER 5: Actualiza valoración media tras nueva valoración
 DELIMITER //
+
 CREATE TRIGGER tActualizarValoracionMedia
 AFTER INSERT ON Valoraciones
 FOR EACH ROW
@@ -95,4 +104,5 @@ BEGIN
     SET numeroTransaccionesCompletadas = numeroTransaccionesCompletadas + 1
     WHERE usuarioId = NEW.usuarioReceptorId;
 END//
+
 DELIMITER ;
