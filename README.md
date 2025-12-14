@@ -848,13 +848,14 @@ A continuación se describen escenarios representativos del funcionamiento de sh
 - Abre el detalle de un Anuncio y lo guarda en “favoritos”.
 - Posteriormente, el propietario marca ese Anuncio como “vendido” y desaparece automáticamente de favoritos.
 
-#### Postcondiciones:
+#### Postcondiciones:s
 - La lista de favoritos del usuario solo contiene anuncios en estado “activo”.
 
 #### Criterios de aceptación:
 - La búsqueda admite palabras clave en título y descripción y filtros combinados.
 - Los anuncios en “borrador, vendido, inactivo o eliminado” no aparecen en listados públicos.
 - Favoritos se sincroniza automáticamente cuando cambia el estado del anuncio.
+
 
 ### ![Diagrama Escenario 3](recursos/Escenario3.svg)
 
