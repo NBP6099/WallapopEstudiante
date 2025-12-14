@@ -786,7 +786,7 @@ El sistema debe cumplir con:
 ## 5. Modelo conceptual
 
 ### 5.1. Diagramas de clases UML
-![Diagrama de Clases UML](recursos/Diagrama4.svg)
+![Diagrama de Clases UML](recursos/diagramaClases.svg)
 (Recomendamos abrir la imagen en una nueva pestaña haciendo click derecho)
 ### 5.2. Escenarios de prueba 
 A continuación se describen escenarios representativos del funcionamiento de shareUS, incluyendo precondiciones, flujo principal, postcondiciones y reglas de negocio implicadas, junto con el diagrama de objetos UML correspondiente a cada caso.
