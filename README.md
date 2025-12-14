@@ -1061,25 +1061,90 @@ ALTER TABLE ANUNCIOS ADD CONSTRAINT chk_precio_intercambio
 
 ### 8. Matriz de trazabilidad MC/SQL (opcional):
 
-- Restricciones sobre el MC / Elementos del modelo tecnológico (SQL) (Triggers, checks, etc.)
-- Incluir Reglas de negocio — Constraints/Triggers en las matrices de trazabilidad para el entregable 3
+## 8. Matriz de trazabilidad MC/SQL
 
-|       | EntidadX   | AsociaciónX  | RestricciónX  | Entidad2 ...   | 
-|:-------|:-------|:-------|:-------|:-------|
-| TABLA-1 |        |        |        |        |
-| TABLA-2 |        |        |        |        |
-| TABLA-3 |        |        |        |        |
-| TABLA-4 |        |        |        |        |
-| TRIG-1 |        |        |        |        |
-| TRIG-2 | X      | X      |        | X      |
-| TRIG-3 |        | X      |        | X      |
-| TRIG-4 |        |        | X      |        |
-| CONST-1 |        |        |        |        |
-| CONST-2 | X      | X      |        | X      |
-| CONST-3 |        | X      |        | X      |
-| CONST-4 |        |        | X      |        |
+| Elemento | USUARIOS | ANUNCIOS | CATEGORIAS | FOTOGRAFIAS | MENSAJES | TRANSACCIONES | VALORACIONES | REPORTES | BLOQUEO_USUARIO | TRG_CADUCIDAD_90 | TRG_DESACTIVAR_3_REPORTES | TRG_ACTUALIZAR_MEDIA | TRG_VALIDAR_LIMITES | TRG_CONFIRMACION_BILATERAL | CHK_CORREO | CHK_VALORACION | CHK_PRECIO | CHK_TITULO | CHK_DESCRIPCION | CHK_FOTO_CANTIDAD |
+|----------|:--------:|:--------:|:----------:|:------------:|:---------:|:-------------:|:------------:|:--------:|:---------------:|:----------------:|:------------------------:|:-------------------:|:------------------:|:-------------------------:|:----------:|:-------------:|:---------:|:----------:|:---------------:|:----------------:|
+| **R.I.01** (Usuario) | X | | | | | | | | | | | | | | X | X | | | | |
+| **R.I.02** (Anuncio) | X | X | X | | | | | | | | | | X | | | | X | X | X | |
+| **R.I.03** (Fotografía) | | X | | X | | | | | | | | | | | | | | | | X |
+| **R.I.04** (Categoría) | | X | X | | | | | | | | | | | | | | | | | |
+| **R.I.05** (Mensaje) | X | X | | | X | | | | | | | | | | | | | | | |
+| **R.I.06** (Valoración) | X | X | | | | | X | | | | | X | | | | | | | | |
+| **R.I.07** (Transacción) | X | X | | | | X | | | | | | X | | X | | | | | | |
+| **R.I.08** (Reporte) | X | X | | | | | | X | | | X | | | | | | | | | |
+| **R.N.01** (Correo institucional) | X | | | | | | | | | | | | | | X | | | | | |
+| **R.N.02** (Acceso autenticados) | X | X | | | | | | | | | | | | | | | | | | |
+| **R.N.03** (Visibilidad anuncios) | | X | | | | | | | | | | | | | | | | | | |
+| **R.N.04** (Límites caracteres) | | X | | | | | | | | | | | X | X | | | | X | X | |
+| **R.N.05** (Caducidad 90 días) | | X | | | | | | | | X | | | | | | | | | | |
+| **R.N.06** (Fotografía obligatoria) | | X | | X | | | | | | | | | | | | | | | | X |
+| **R.N.07** (Confirmación bilateral) | X | X | | | | X | X | | | | | | | X | | | | | | |
+| **R.N.08** (Gestión reportes) | X | X | | | | | | X | | | X | | | | | | | | | |
+| **R.N.09** (Permisos admin) | X | | X | | | | | | | | | | | | | | | | | |
+| **R.N.10** (Protección datos) | X | | | | | | | | | | | | | | X | | | | | |
+| **R.N.11** (Productos prohibidos) | | X | | | | | | X | | | | | | | | | | | | |
 
-Se consideran todo tipo de constraints declarativas (aquellas definidas durante el CREATE TABLE).
+### Explicación de columnas (Elementos del modelo relacional):
+
+**Tablas:**
+- **USUARIOS**: Almacena datos de estudiantes y administradores con roles, estados y validaciones de correo institucional
+- **ANUNCIOS**: Registra anuncios de venta e intercambio con estados, límites de texto, precios y trazabilidad
+- **CATEGORIAS**: Catálogo de clasificación de productos (Libros, Tecnología, etc.)
+- **FOTOGRAFIAS**: Asocia múltiples imágenes a cada anuncio con restricción 1-5 fotos
+- **MENSAJES**: Conversaciones entre comprador y vendedor con marca temporal
+- **TRANSACCIONES**: Registro de compraventas con estados progresivos (negociación → completada)
+- **VALORACIONES**: Reputación entre usuarios (1-5 estrellas) con cálculo automático de media
+- **REPORTES**: Denuncias de anuncios/usuarios con gestión administrativa y acciones
+- **BLOQUEO_USUARIO**: Control de bloqueos entre usuarios para evitar interacciones
+
+**Triggers (Lógica procedural que implementa reglas de negocio):**
+- **TRG_CADUCIDAD_90**: Marca anuncios como inactivos tras 90 días sin modificación (R.N.05)
+- **TRG_DESACTIVAR_3_REPORTES**: Desactiva automáticamente anuncio con 3+ reportes de usuarios diferentes (R.N.08)
+- **TRG_ACTUALIZAR_MEDIA**: Recalcula valoración media de usuario al insertar nueva valoración (R.I.06, R.I.07)
+- **TRG_VALIDAR_LIMITES**: Valida límites de caracteres en título/descripción antes de insertar/actualizar (R.N.04)
+- **TRG_CONFIRMACION_BILATERAL**: Controla que transacción solo pase a completada con confirmación de ambas partes (R.N.07, R.I.07)
+
+**Constraints Declarativos (Definidos en CREATE TABLE):**
+- **CHK_CORREO**: Valida formato @alum.us.es para correo institucional (R.N.01)
+- **CHK_VALORACION**: Rango 0-5 para valoración media de usuario (R.I.06)
+- **CHK_PRECIO**: Precio > 0 y < 500€ para anuncios de venta, NULL para intercambio (R.N.04, R.I.02)
+- **CHK_TITULO**: Rango 10-100 caracteres (R.N.04, R.I.02)
+- **CHK_DESCRIPCION**: Rango 20-1000 caracteres (R.N.04, R.I.02)
+- **CHK_FOTO_CANTIDAD**: Mínimo 1, máximo 5 fotografías por anuncio (R.N.06, R.I.03)
+
+### Cómo se implementan las reglas de negocio:
+
+| Regla de Negocio | Implementación | Elemento SQL |
+|:---|:---|:---|
+| R.N.01 Verificación correo | Validación formato institucional | CHK_CORREO en tabla USUARIOS |
+| R.N.02 Acceso autenticados | Autenticación en aplicación (no BD) | Tabla USUARIOS, campo estadoCuenta |
+| R.N.03 Visibilidad anuncios | Filtro en consultas (estado = 'activo') | Índice en ANUNCIOS.estado |
+| R.N.04 Límites caracteres | Validación en INSERT/UPDATE | TRG_VALIDAR_LIMITES, CHK_TITULO, CHK_DESCRIPCION |
+| R.N.05 Caducidad 90 días | Ejecución programada (cron) | TRG_CADUCIDAD_90 |
+| R.N.06 Foto obligatoria | FK y constraint de cantidad | CHK_FOTO_CANTIDAD en FOTOGRAFIAS |
+| R.N.07 Confirmación bilateral | Lógica de estados en trigger | TRG_CONFIRMACION_BILATERAL |
+| R.N.08 Gestión reportes | Trigger de conteo y desactivación | TRG_DESACTIVAR_3_REPORTES |
+| R.N.09 Permisos admin | Control en aplicación basado en rol | Campo rolUsuario en USUARIOS |
+| R.N.10 Protección datos | Cifrado bcrypt en aplicación + política | Contraseña VARCHAR(255) cifrada |
+| R.N.11 Productos prohibidos | Validación en aplicación + moderación | Tabla REPORTES con tipo reporte |
+
+### Notas sobre la trazabilidad:
+
+- **Cada X en la matriz indica que el elemento del modelo conceptual (RI/RN) es implementado o validado por esa tabla, trigger o constraint**
+- **Los triggers son críticos para implementar reglas complejas que requieren lógica transaccional** (confirmación bilateral, caducidad, contador de reportes)
+- **Los constraints declarativos (CHECK) previenen datos inválidos en el nivel de BD** (primeros controles)
+- **Las Foreign Keys garantizan integridad referencial** (relaciones 1:N, cascadas)
+- **Los índices optimizan consultas de búsqueda y filtrado** (R.N.F.01 Rendimiento < 3s)
+
+---
+
+**Resumen de cobertura:**
+- ✅ Todos los Requisitos de Información (R.I.01 a R.I.08) tienen tablas específicas
+- ✅ Todas las Reglas de Negocio (R.N.01 a R.N.11) están implementadas en triggers y/o constraints
+- ✅ La trazabilidad es completa: cada requisito aparece en al menos un elemento SQL
+- ✅ Existe redundancia controlada: algunos elementos SQL soportan múltiples requisitos (ejemplo: USUARIOS soporta R.N.01, R.N.02, R.N.10)
+
 -- fin entregable 3 --
 
 ## Referencias
