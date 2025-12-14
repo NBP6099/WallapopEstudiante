@@ -925,8 +925,7 @@ A continuación se describen escenarios representativos del funcionamiento de sh
 -- fin entregable 2 --
 
 ## 7. Modelo relacional en 3FN
-
-- Relaciones obtenidas al aplicar la transformación del modelo conceptual.
+![Modelado Relacional](recursos/diagrama3fn.svg)
 
 ### 7.1.  Justificación de la estrategia de transformación de jerarquías
 
