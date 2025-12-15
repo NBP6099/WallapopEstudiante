@@ -1173,14 +1173,6 @@ ALTER TABLE ANUNCIOS ADD CONSTRAINT chk_precio_intercambio
 | R.N.10 Protección datos | Cifrado bcrypt en aplicación + política | Contraseña VARCHAR(255) cifrada |
 | R.N.11 Productos prohibidos | Validación en aplicación + moderación | Tabla REPORTES con tipo reporte |
 
-### Notas sobre la trazabilidad:
-
-- **Cada X en la matriz indica que el elemento del modelo conceptual (RI/RN) es implementado o validado por esa tabla, trigger o constraint**
-- **Los triggers son críticos para implementar reglas complejas que requieren lógica transaccional** (confirmación bilateral, caducidad, contador de reportes)
-- **Los constraints declarativos (CHECK) previenen datos inválidos en el nivel de BD** (primeros controles)
-- **Las Foreign Keys garantizan integridad referencial** (relaciones 1:N, cascadas)
-- **Los índices optimizan consultas de búsqueda y filtrado** (R.N.F.01 Rendimiento < 3s)
-
 -- fin entregable 3 --
 
 ## Referencias
