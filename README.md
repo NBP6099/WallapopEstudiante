@@ -880,16 +880,11 @@ A continuación se describen escenarios representativos del funcionamiento de sh
 - Sofía accede a "Mis favoritos" (2025-12-14 16:00:00): Ve 2 anuncios: 1. "Lámpara LED" 15€ (hace 50 min), 2. "Cable HDMI" 8,50€ (hace 42 min). Total: 23,50€ ✓ (dentro presupuesto 40€).
 - Una semana después (2025-12-21 14:30:00): Alberto vende lámpara. Anuncio.estado "activo" → "vendido". TRIGGER: Busca CategoriasFavoritas anuncioId=2, encuentra 1 registro (Sofía), elimina por FK ON DELETE CASCADE. Sofía recibe notificación: "Un anuncio guardado ya no está disponible". Sofía ahora solo tiene Cable en favoritos.
 
-<<<<<<< HEAD
-#### Postcondiciones:s
-- La lista de favoritos del usuario solo contiene anuncios en estado “activo”.
-=======
 #### Postcondiciones:
 - Sofía tiene 1 favorito activo (Cable HDMI).
 - Búsqueda procesada < 3 segundos ✓.
 - Anuncios inactivos nunca aparecieron ✓.
 - Lámpara se eliminó automáticamente de favoritos al venderse ✓.
->>>>>>> 52af1a078c48a6b19532c918e4d82f83c9568791
 
 #### Criterios de aceptación:
 - Solo usuario autenticado accede ✓. Solo anuncios "activo" en búsqueda ✓.
