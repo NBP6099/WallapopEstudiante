@@ -896,39 +896,83 @@ A continuación se describen escenarios representativos del funcionamiento de sh
 
 ---
 
-#### Escenario 4: Modificación y eliminación de anuncio propio con confirmación
+#### Escenario 4A: Modificación de anuncio propio
 
-#### Precondiciones:
+**Precondiciones:**
 - **Gonzalo López-Cano Liviano** tiene anuncio "Sudadera deportiva Talla M" en estado "activo" desde 2025-12-12 14:30:00.
 - Anuncio: Precio 20€, 1 foto, descripción 45 caracteres.
 - 2 usuarios lo tienen en favoritos.
 - Existe 1 Transaccion en estado "en negociacion" (usuario Carlos).
-- Reglas de negocio: R.N.04, R.N.05, R.N.06, R.N.07, R.N.09.
+- Reglas de negocio: R.N.04, R.N.06, R.N.07.
 
-#### Desarrollo:
-- Gonzalo accede a perfil (2025-12-15 10:00:00): Navbar → "Mis anuncios", ve "Sudadera deportiva" (estado "activo"), presiona "Editar".
-- Abre formulario (2025-12-15 10:05:00): Modifica Precio 20€ → 18€, Descripción agrega "URGENTE: cambio de talla" (ahora 77 caracteres), sube 1 foto adicional (total 2 fotos), presiona "Guardar cambios".
-- TRIGGER tValidarLimitesAnuncio: Descripción 77 caracteres ✓ (rango 20-1000). Precio 18€ ✓ (> 0 y < 500). Título mantiene validez. Todas validaciones pasan ✓.
-- Anuncio se actualiza (2025-12-15 10:10:00): estado sigue "activo", precio = 18€, descripcion actualizada, fechaUltimaModificacion = 2025-12-15 10:10:00. Cambios visibles inmediatamente. 2 usuarios con favorito reciben notificación: "Un anuncio guardado se actualizó". Carlos en chat: "Vi que bajaste a 18€! ¡Me interesa!". Gonzalo: "Sí, necesito cambiar de talla. ¿Mañana a las 5pm?".
-- Semana después (2025-12-22): Sudadera vendida (estado "vendido") desde ayer. Otro anuncio "Chaqueta invierno" sin modificar 5 días. Sistema: "⚠️ Tu anuncio expirará en 2 días (90 días sin actualización)".
-- Gonzalo elimina anuncio (2025-12-23 14:00:00): Accede "Mis anuncios", ve "Sudadera" (estado "vendido"), presiona "Eliminar anuncio".
-- Modal confirmación: "¿Estás seguro de eliminar? Esta acción no se puede deshacer". Botones "Cancelar" | "Eliminar definitivamente". Presiona "Eliminar definitivamente".
-- Sistema procesa (2025-12-23 14:05:00): Anuncio.estado = "eliminado". TRIGGER: Busca CategoriasFavoritas donde anuncioId=sudadera, encuentra 2 usuarios, elimina por FK ON DELETE CASCADE. Esos 2 usuarios reciben: "Un anuncio guardado fue eliminado por vendedor". Historial se mantiene: Transaccion, Mensajes, Valoraciones siguen.
-- Verificación post-eliminación (2025-12-23 14:10:00): Anuncio.estado = "eliminado". CategoriasFavoritas 2 registros eliminados. Fotografias se mantienen en BD pero no mostradas públicamente. Transaccion completada sigue en historial. Valoraciones siguen públicamente. fechaUltimaModificacion registrada 2025-12-15 10:10:00.
+**Desarrollo:**
+1. Gonzalo accede a perfil (2025-12-15 10:00:00): Navbar → "Mis anuncios", ve "Sudadera deportiva" (estado "activo"), presiona "Editar".
 
-#### Postcondiciones:
+2. Abre formulario (2025-12-15 10:05:00): Modifica Precio 20€ → 18€, Descripción agrega "URGENTE: cambio de talla" (ahora 77 caracteres), sube 1 foto adicional (total 2 fotos), presiona "Guardar cambios".
+
+3. TRIGGER tValidarLimitesAnuncio: Descripción 77 caracteres ✓ (rango 20-1000). Precio 18€ ✓ (> 0 y < 500). Título mantiene validez. Todas validaciones pasan ✓.
+
+4. Anuncio se actualiza (2025-12-15 10:10:00): estado sigue "activo", precio = 18€, descripcion actualizada, fechaUltimaModificacion = 2025-12-15 10:10:00. Cambios visibles inmediatamente. 2 usuarios con favorito reciben notificación: "Un anuncio guardado se actualizó". Carlos en chat: "Vi que bajaste a 18€! ¡Me interesa!". Gonzalo: "Sí, necesito cambiar de talla. ¿Mañana a las 5pm?".
+
+**Postcondiciones:**
+- Anuncio.estado = "activo" (sin cambios).
+- Anuncio.precio = 18.00€.
+- Anuncio.descripcion = "URGENTE: cambio de talla. Sudadera..." (77 caracteres).
+- Anuncio contiene 2 fotografías.
+- Anuncio.fechaUltimaModificacion = "2025-12-15 10:10:00".
+- 2 usuarios con favorito notificados del cambio.
+- Carlos en transacción activa puede continuar negociación.
+- Transaccion.estado = "en negociacion" (se mantiene activa).
+
+**Criterios de aceptación:**
+- Límites de caracteres validados ✓ (descripción [20..1000] ✓).
+- Precio modificado correctamente (< 500€) ✓.
+- Se permite actualizar fotos (1-5) ✓.
+- Trazabilidad registrada (fechaUltimaModificacion) ✓.
+- Usuarios con favorito notificados ✓.
+
+### ![Diagrama Escenario 4A](recursos/Escenario4A.svg)
+
+***
+
+#### Escenario 4B: Eliminación de anuncio propio
+
+**Precondiciones:**
+- **Gonzalo López-Cano Liviano** tiene anuncio "Sudadera deportiva Talla M" en estado "vendido" (fue vendida el 2025-12-21).
+- Anuncio: Precio 18€ (último precio), 2 fotos, descripción modificada.
+- 2 usuarios lo tienen en favoritos.
+- Existe 1 Transaccion completada (usuario Carlos) con 2 valoraciones registradas.
+- Reglas de negocio: R.N.04, R.N.07.
+
+**Desarrollo:**
+1. Gonzalo accede a perfil (2025-12-23 14:00:00): Navbar → "Mis anuncios", ve "Sudadera deportiva" (estado "vendido"), presiona "Eliminar anuncio".
+
+2. Modal confirmación (2025-12-23 14:02:00): Sistema muestra "¿Estás seguro de eliminar? Esta acción no se puede deshacer". Botones: "Cancelar" | "Eliminar definitivamente". Presiona "Eliminar definitivamente".
+
+3. Sistema procesa (2025-12-23 14:05:00): Anuncio.estado = "eliminado". TRIGGER CASCADE: Busca Favorito donde anuncioId=5, encuentra 2 usuarios, elimina por FK ON DELETE CASCADE. Esos 2 usuarios reciben: "Un anuncio guardado fue eliminado por vendedor".
+
+4. Historial se mantiene: Transaccion completada, Mensajes y Valoraciones siguen registrados.
+
+5. Verificación post-eliminación (2025-12-23 14:10:00): Anuncio.estado = "eliminado". Favorito 2 registros eliminados. Fotografias se mantienen en BD pero no mostradas públicamente. Transaccion completada sigue en historial. Valoraciones siguen públicamente. fechaUltimaModificacion registrada 2025-12-15 10:10:00.
+
+**Postcondiciones:**
 - Anuncio.estado = "eliminado".
 - Anuncio desaparece de búsquedas, listados y favoritos.
+- 2 Favoritos eliminados automáticamente CASCADE.
+- 2 usuarios notificados de la eliminación.
 - Transacciones y valoraciones se conservan.
 - Trazabilidad de cambios registrada (fechaUltimaModificacion).
 - Admin puede ver historial completo de modificaciones.
 
-#### Criterios de aceptación:
-- Límites de caracteres validados ✓. Sistema avisa caducidad 90 días ✓.
-- Se permite actualizar fotos (1-5) ✓. Trazabilidad registrada ✓.
-- Historial visible para admin ✓. Confirmación modal antes de eliminar ✓.
+**Criterios de aceptación:**
+- Confirmación modal antes de eliminar ✓.
+- Anuncio desaparece de búsquedas ✓.
+- Favoritos eliminados automáticamente CASCADE ✓.
+- Usuarios notificados ✓.
+- Historial transaccional se conserva ✓.
+- Valoraciones públicas se conservan ✓.
 
-### ![Diagrama Escenario 4](recursos/Escenario4.svg)
+### ![Diagrama Escenario 4B](recursos/Escenario4B.svg)
 
 ---
 
