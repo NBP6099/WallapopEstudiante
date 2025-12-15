@@ -1,3 +1,13 @@
+Drop Table if exists Usuarios;
+Drop Table if exists Categorias;
+Drop Table if exists Anuncios;
+Drop Table if exists Fotografias;
+Drop Table if exists CategoriasFavoritas;
+Drop Table if exists Transacciones;
+Drop Table if exists Mensajes;
+Drop Table if exists Valoraciones;
+Drop Table if exists Reportes;
+Drop Table if exists BloqueoUsuario;
 -- 1. TABLA USUARIOS
 CREATE TABLE Usuarios (
     usuarioId INT AUTO_INCREMENT PRIMARY KEY,
