@@ -1104,9 +1104,8 @@ ALTER TABLE ANUNCIOS ADD CONSTRAINT chk_precio_intercambio
 
 
 
-### 8. Matriz de trazabilidad MC/SQL (opcional):
+### 8. Matriz de trazabilidad MC/SQL :
 
-## 8. Matriz de trazabilidad MC/SQL
 
 | Elemento | USUARIOS | ANUNCIOS | CATEGORIAS | FOTOGRAFIAS | MENSAJES | TRANSACCIONES | VALORACIONES | REPORTES | BLOQUEO_USUARIO | TRG_CADUCIDAD_90 | TRG_DESACTIVAR_3_REPORTES | TRG_ACTUALIZAR_MEDIA | TRG_VALIDAR_LIMITES | TRG_CONFIRMACION_BILATERAL | CHK_CORREO | CHK_VALORACION | CHK_PRECIO | CHK_TITULO | CHK_DESCRIPCION | CHK_FOTO_CANTIDAD |
 |----------|:--------:|:--------:|:----------:|:------------:|:---------:|:-------------:|:------------:|:--------:|:---------------:|:----------------:|:------------------------:|:-------------------:|:------------------:|:-------------------------:|:----------:|:-------------:|:---------:|:----------:|:---------------:|:----------------:|
@@ -1182,16 +1181,6 @@ ALTER TABLE ANUNCIOS ADD CONSTRAINT chk_precio_intercambio
 - **Las Foreign Keys garantizan integridad referencial** (relaciones 1:N, cascadas)
 - **Los índices optimizan consultas de búsqueda y filtrado** (R.N.F.01 Rendimiento < 3s)
 
----
-
-**Resumen de cobertura:**
-- ✅ Todos los Requisitos de Información (R.I.01 a R.I.08) tienen tablas específicas
-- ✅ Todas las Reglas de Negocio (R.N.01 a R.N.11) están implementadas en triggers y/o constraints
-- ✅ La trazabilidad es completa: cada requisito aparece en al menos un elemento SQL
-- ✅ Existe redundancia controlada: algunos elementos SQL soportan múltiples requisitos (ejemplo: USUARIOS soporta R.N.01, R.N.02, R.N.10)
-
 -- fin entregable 3 --
 
 ## Referencias
-
-
