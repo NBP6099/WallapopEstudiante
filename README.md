@@ -1,11 +1,43 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/7wG06BM4)
-# SHAREUS
+# 🛒 WallapopEstudiante - Database System
 
-## Miembros del grupo L7-9
+## 📋 Descripción
+Sistema de gestión de base de datos diseñado para una plataforma de compraventa exclusiva para la comunidad universitaria. El proyecto implementa el modelo de datos completo para gestionar **usuarios, publicaciones, transacciones, chats y valoraciones**.
 
-1. Ramos Torres, Alberto
-1. López-Cano Liviano, Gonzalo
+Este repositorio contiene la lógica de negocio (Backend Database) implementada íntegramente en SQL, asegurando integridad referencial y automatización de procesos.
 
+## 🗄️ Estructura del Proyecto
+
+El código SQL está modularizado para un despliegue ordenado:
+
+* **1. Tablas y Restricciones:** Definición del esquema DDL (`CREATE TABLE`) y reglas de integridad (PK, FK, Checks).
+* **2. Funciones y Procedimientos:** Lógica encapsulada para operaciones complejas (ej: realizar una compra, calcular reputación).
+* **3. Consultas y Cursores:** Scripts de reporting y procesamiento por lotes.
+* **4. Triggers:** Disparadores automáticos para auditoría y validación de estados en tiempo real.
+* **5. Datos de Prueba:** Script de poblado (`INSERT`) para inicializar el entorno.
+
+## 🛠️ Tecnologías y Metodología
+* **Lenguaje:** SQL / PL/SQL.
+* **Diseño:** Modelo Entidad-Relación extendido.
+* **Normalización:** Esquema optimizado hasta la **Tercera Forma Normal (3FN)**.
+
+## 📊 Diagramas de Diseño
+
+### Escenario y Modelo Relacional
+El sistema cubre flujos complejos de interacción entre estudiantes compradores y vendedores.
+
+| Diagrama de Clases | Normalización (3FN) |
+|:---:|:---:|
+| <img src="recursos/diagramaClases.svg" width="400" alt="UML Clases"> | <img src="recursos/diagrama3fn.svg" width="400" alt="Modelo Relacional"> |
+
+## 🚀 Instalación y Despliegue
+1.  Clonar el repositorio:
+    ```bash
+    git clone [https://github.com/NBP6099/WallapopEstudiante.git](https://github.com/NBP6099/WallapopEstudiante.git)
+    ```
+2.  Ejecutar los scripts SQL en orden numérico (del 1 al 5) en tu gestor de base de datos (Oracle / MySQL / PostgreSQL).
+
+---
+*Proyecto de Bases de Datos Avanzadas - Ingeniería de Software*
 ## Índice
 ### Índice
 
